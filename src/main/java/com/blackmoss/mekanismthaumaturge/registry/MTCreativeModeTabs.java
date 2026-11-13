@@ -9,7 +9,8 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 public final class MTCreativeModeTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MekanismThaumaturge.MODID);
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> THAUMATURGE_ADDITIONS = CREATIVE_MODE_TABS.register(MekanismThaumaturge.MODID,
+
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MEKANISM_THAUMATURGE = CREATIVE_MODE_TABS.register(MekanismThaumaturge.MODID,
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.mekanismthaumaturge"))
                     .icon(() -> MTItems.TEST.get().getDefaultInstance()).displayItems((itemDisplayParameters, output) -> {
