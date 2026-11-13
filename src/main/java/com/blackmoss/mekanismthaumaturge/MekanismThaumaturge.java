@@ -53,7 +53,7 @@ public class MekanismThaumaturge {
         event.createProvider(ModItemTagsProvider::new);
         event.createProvider(ModBlockTagsProvider::new);
 
-        event.createProvider(ModModelProvider::new);
+//        event.createProvider(ModModelProvider::new);
 
         event.createProvider((output, lookupProvider) -> new LootTableProvider(
                 output,
