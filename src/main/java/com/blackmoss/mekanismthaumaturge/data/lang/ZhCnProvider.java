@@ -1,6 +1,6 @@
-package com.blackmoss.averylooongmodname.data.lang;
+package com.blackmoss.mekanismthaumaturge.data.lang;
 
-import com.blackmoss.averylooongmodname.MekanismThaumaturge;
+import com.blackmoss.mekanismthaumaturge.MekanismThaumaturge;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 
@@ -11,5 +11,6 @@ public class ZhCnProvider extends LanguageProvider {
 
     @Override
     protected void addTranslations() {
+        add("itemGroup.mekanismthaumaturge", "通用神秘");
     }
 }

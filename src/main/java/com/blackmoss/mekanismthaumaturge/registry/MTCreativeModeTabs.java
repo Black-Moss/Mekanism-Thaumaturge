@@ -1,0 +1,18 @@
+package com.blackmoss.mekanismthaumaturge.registry;
+
+import com.blackmoss.mekanismthaumaturge.MekanismThaumaturge;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.CreativeModeTab;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
+
+public final class MTCreativeModeTabs {
+    public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MekanismThaumaturge.MODID);
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> THAUMATURGE_ADDITIONS = CREATIVE_MODE_TABS.register(MekanismThaumaturge.MODID,
+            () -> CreativeModeTab.builder()
+                    .title(Component.translatable("itemGroup.mekanismthaumaturge"))
+                    .icon(() -> MTItems.TEST.get().getDefaultInstance()).displayItems((itemDisplayParameters, output) -> {
+
+                    }).build());
+}

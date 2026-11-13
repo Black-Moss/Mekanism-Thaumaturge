@@ -1,6 +1,6 @@
-package com.blackmoss.averylooongmodname.data;
+package com.blackmoss.mekanismthaumaturge.data;
 
-import com.blackmoss.averylooongmodname.registry.MTBlocks;
+import com.blackmoss.mekanismthaumaturge.registry.MTBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;

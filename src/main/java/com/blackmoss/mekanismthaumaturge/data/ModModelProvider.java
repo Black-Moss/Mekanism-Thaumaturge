@@ -1,6 +1,6 @@
-package com.blackmoss.averylooongmodname.data;
+package com.blackmoss.mekanismthaumaturge.data;
 
-import com.blackmoss.averylooongmodname.MekanismThaumaturge;
+import com.blackmoss.mekanismthaumaturge.MekanismThaumaturge;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;

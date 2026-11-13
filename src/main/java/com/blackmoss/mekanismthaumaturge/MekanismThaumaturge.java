@@ -1,13 +1,16 @@
-package com.blackmoss.averylooongmodname;
+package com.blackmoss.mekanismthaumaturge;
 
-import com.blackmoss.averylooongmodname.data.ModBlockLootSubProvider;
-import com.blackmoss.averylooongmodname.data.ModModelProvider;
-import com.blackmoss.averylooongmodname.data.ModRecipeProvider;
-import com.blackmoss.averylooongmodname.data.lang.EnUsProvider;
-import com.blackmoss.averylooongmodname.data.lang.ZhCnProvider;
-import com.blackmoss.averylooongmodname.data.tag.ModBlockTagsProvider;
-import com.blackmoss.averylooongmodname.data.tag.ModItemTagsProvider;
-import com.blackmoss.averylooongmodname.registry.MTBlocks;
+import com.blackmoss.mekanismthaumaturge.data.ModBlockLootSubProvider;
+import com.blackmoss.mekanismthaumaturge.data.ModModelProvider;
+import com.blackmoss.mekanismthaumaturge.data.ModRecipeProvider;
+import com.blackmoss.mekanismthaumaturge.data.lang.EnUsProvider;
+import com.blackmoss.mekanismthaumaturge.data.lang.ZhCnProvider;
+import com.blackmoss.mekanismthaumaturge.data.tag.ModBlockTagsProvider;
+import com.blackmoss.mekanismthaumaturge.data.tag.ModItemTagsProvider;
+import com.blackmoss.mekanismthaumaturge.registry.MTBlockEntities;
+import com.blackmoss.mekanismthaumaturge.registry.MTBlocks;
+import com.blackmoss.mekanismthaumaturge.registry.MTCreativeModeTabs;
+import com.blackmoss.mekanismthaumaturge.registry.MTItems;
 import com.mojang.logging.LogUtils;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.resources.Identifier;
@@ -30,7 +33,10 @@ public class MekanismThaumaturge {
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public MekanismThaumaturge(IEventBus modEventBus, ModContainer modContainer) {
+        MTBlockEntities.BLOCK_ENTITIES.register(modEventBus);
         MTBlocks.BLOCKS.register(modEventBus);
+        MTCreativeModeTabs.CREATIVE_MODE_TABS.register(modEventBus);
+        MTItems.ITEMS.register(modEventBus);
     }
 
     public static Identifier identifier(String path) {

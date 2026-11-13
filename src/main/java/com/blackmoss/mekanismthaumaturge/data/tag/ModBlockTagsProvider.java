@@ -1,15 +1,15 @@
-package com.blackmoss.averylooongmodname.data.tag;
+package com.blackmoss.mekanismthaumaturge.data.tag;
 
-import com.blackmoss.averylooongmodname.MekanismThaumaturge;
+import com.blackmoss.mekanismthaumaturge.MekanismThaumaturge;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.neoforged.neoforge.common.data.ItemTagsProvider;
+import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import org.jspecify.annotations.NonNull;
 
 import java.util.concurrent.CompletableFuture;
 
-public final class ModItemTagsProvider extends ItemTagsProvider {
-    public ModItemTagsProvider(
+public final class ModBlockTagsProvider extends BlockTagsProvider {
+    public ModBlockTagsProvider(
             PackOutput output,
             CompletableFuture<HolderLookup.Provider> lookupProvider) {
         super(output, lookupProvider, MekanismThaumaturge.MODID);
@@ -17,10 +17,11 @@ public final class ModItemTagsProvider extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.@NonNull Provider provider) {
+
     }
 
     @Override
     public @NonNull String getName() {
-        return "Mekanism Thaumaturge Item Tags";
+        return "Mekanism Thaumaturge Block Tags";
     }
 }
