@@ -1,8 +1,8 @@
 package com.blackmoss.mekanismthaumaturge.registry;
 
 import com.blackmoss.mekanismthaumaturge.MekanismThaumaturge;
-import com.leclowndu93150.thaumaturge.api.essentia.EssentiaCapabilities;
 import com.blackmoss.mekanismthaumaturge.common.essentia.TileEntityEssentiaTube;
+import com.leclowndu93150.thaumaturge.api.essentia.EssentiaCapabilities;
 import mekanism.common.capabilities.Capabilities;
 import mekanism.common.registration.impl.TileEntityTypeDeferredRegister;
 import mekanism.common.registration.impl.TileEntityTypeRegistryObject;

@@ -29,6 +29,7 @@ import java.util.Collection;
 import java.util.UUID;
 
 public class EssentiaTube extends BufferedTransmitter<IEssentiaTransport, EssentiaNetwork, EssentiaBuffer, EssentiaTube> {
+
     private static final String ESSENTIA_TYPE_KEY = "EssentiaType";
     private static final String ESSENTIA_AMOUNT_KEY = "EssentiaAmount";
     private static final Codec<ResourceKey<IAspect>> ASPECT_KEY_CODEC = ResourceKey.codec(IAspect.REGISTRY_KEY);
@@ -47,6 +48,15 @@ public class EssentiaTube extends BufferedTransmitter<IEssentiaTransport, Essent
     public EssentiaTube(@NonNull Holder<Block> blockProvider, @NonNull TileEntityTransmitter tile) {
         super(tile, MTTransmission.ESSENTIA);
         this.tier = Attribute.getTierNN(blockProvider, TubeTier.class);
+    }
+
+    public int getRate() {
+        return switch (tier.getBaseTier()) {
+            case ADVANCED -> 16;
+            case ELITE -> 64;
+            case ULTIMATE -> 256;
+            default -> 4;
+        };
     }
 
     @Override
@@ -194,8 +204,8 @@ public class EssentiaTube extends BufferedTransmitter<IEssentiaTransport, Essent
         if (!hasPullSide) {
             return;
         }
-        int needed = Math.max(0, maxAmount() - bufferAmount);
-        if (needed <= 0) {
+        int needed = Math.clamp(maxAmount() - bufferAmount, 0, getRate());
+        if (needed == 0) {
             return;
         }
         Holder<IAspect> wanted = bufferType;
@@ -278,7 +288,7 @@ public class EssentiaTube extends BufferedTransmitter<IEssentiaTransport, Essent
             }
             removed = Math.min(count, bufferAmount);
             bufferAmount -= removed;
-            if (bufferAmount == 0) {
+            if (bufferAmount <= 0) {
                 bufferType = null;
             }
         }

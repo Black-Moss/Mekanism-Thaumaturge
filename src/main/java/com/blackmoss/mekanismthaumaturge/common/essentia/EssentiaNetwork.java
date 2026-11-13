@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.UUID;
 
 public class EssentiaNetwork extends DynamicBufferedNetwork<IEssentiaTransport, EssentiaNetwork, EssentiaBuffer, EssentiaTube> {
+
     @Nullable
     private Holder<IAspect> essentiaType;
     private int essentiaAmount;
@@ -27,6 +28,14 @@ public class EssentiaNetwork extends DynamicBufferedNetwork<IEssentiaTransport, 
     public EssentiaNetwork(@NonNull Collection<EssentiaNetwork> networks) {
         this(UUID.randomUUID());
         adoptAllAndRegister(networks);
+    }
+
+    public int getRate() {
+        int rate = 0;
+        for (EssentiaTube tube : getTransmitters()) {
+            rate = Math.max(rate, tube.getRate());
+        }
+        return rate > 0 ? rate : 4;
     }
 
     @Override
@@ -106,12 +115,14 @@ public class EssentiaNetwork extends DynamicBufferedNetwork<IEssentiaTransport, 
         if (type == null || remaining <= 0) {
             return;
         }
+        int rate = getRate();
         for (Map<Direction, IEssentiaTransport> acceptors : acceptorCache.getAcceptorValues()) {
             for (Map.Entry<Direction, IEssentiaTransport> entry : acceptors.entrySet()) {
                 Direction side = entry.getKey();
                 IEssentiaTransport acceptor = entry.getValue();
                 if (side != null && acceptor != null && remaining > 0) {
-                    int accepted = acceptor.addEssentia(type, remaining, side);
+                    int toSend = Math.min(remaining, rate);
+                    int accepted = acceptor.addEssentia(type, toSend, side);
                     remaining -= Math.clamp(remaining, 0, accepted);
                 }
             }
