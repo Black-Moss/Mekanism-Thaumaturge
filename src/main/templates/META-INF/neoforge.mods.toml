@@ -26,3 +26,17 @@ type = "required"
 versionRange = "${minecraft_version_range}"
 ordering = "NONE"
 side = "BOTH"
+
+[[dependencies.${ mod_id }]]
+modId = "mekanism"
+type = "required"
+versionRange = "[${mekanism_version},)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.${ mod_id }]]
+modId = "thaumaturge"
+type = "required"
+versionRange = "[${thaumaturge_version},)"
+ordering = "AFTER"
+side = "BOTH"

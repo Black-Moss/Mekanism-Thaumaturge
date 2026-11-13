@@ -1,3 +1,10 @@
 {
-  "itemGroup.mekanismthaumaturge": "通用神秘"
+  "block.mekanismthaumaturge.advanced_essentia_tube": "高级源质管道",
+  "block.mekanismthaumaturge.basic_essentia_tube": "基础源质管道",
+  "block.mekanismthaumaturge.elite_essentia_tube": "精英源质管道",
+  "block.mekanismthaumaturge.ultimate_essentia_tube": "终极源质管道",
+  "description.mekanismthaumaturge.essentia_tube": "在相连的方块之间传输源质。",
+  "itemGroup.mekanismthaumaturge": "通用神秘",
+  "network.mekanismthaumaturge.essentia": "源质网络",
+  "transmission.mekanismthaumaturge.essentia": "源质"
 }

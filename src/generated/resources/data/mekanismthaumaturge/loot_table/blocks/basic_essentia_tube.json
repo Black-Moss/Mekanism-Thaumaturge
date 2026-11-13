@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "mekanismthaumaturge:basic_essentia_tube"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "mekanismthaumaturge:blocks/basic_essentia_tube"
+}

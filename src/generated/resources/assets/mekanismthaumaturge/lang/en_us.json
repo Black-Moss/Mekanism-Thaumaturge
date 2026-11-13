@@ -1,3 +1,10 @@
 {
-  "itemGroup.mekanismthaumaturge": "Mekanism Thaumaturge"
+  "block.mekanismthaumaturge.advanced_essentia_tube": "Advanced Essentia Tube",
+  "block.mekanismthaumaturge.basic_essentia_tube": "Basic Essentia Tube",
+  "block.mekanismthaumaturge.elite_essentia_tube": "Elite Essentia Tube",
+  "block.mekanismthaumaturge.ultimate_essentia_tube": "Ultimate Essentia Tube",
+  "description.mekanismthaumaturge.essentia_tube": "Transports essentia between connected blocks.",
+  "itemGroup.mekanismthaumaturge": "Mekanism Thaumaturge",
+  "network.mekanismthaumaturge.essentia": "Essentia Network",
+  "transmission.mekanismthaumaturge.essentia": "Essentia"
 }

@@ -13,7 +13,11 @@ public final class MTCreativeModeTabs {
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MEKANISM_THAUMATURGE = CREATIVE_MODE_TABS.register(MekanismThaumaturge.MODID,
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.mekanismthaumaturge"))
-                    .icon(() -> MTItems.TEST.get().getDefaultInstance()).displayItems((itemDisplayParameters, output) -> {
-
+                    .icon(() -> MTBlocks.BASIC_ESSENTIA_TUBE.asItem().getDefaultInstance())
+                    .displayItems((itemDisplayParameters, output) -> {
+                        output.accept(MTBlocks.BASIC_ESSENTIA_TUBE.asItem());
+                        output.accept(MTBlocks.ADVANCED_ESSENTIA_TUBE.asItem());
+                        output.accept(MTBlocks.ELITE_ESSENTIA_TUBE.asItem());
+                        output.accept(MTBlocks.ULTIMATE_ESSENTIA_TUBE.asItem());
                     }).build());
 }

@@ -1,0 +1,9 @@
+{
+  "parent": "mekanism:block/transmitter/large/large",
+  "textures": {
+    "side": "mekanismthaumaturge:block/models/multipart/basic_essentia_tube_vertical",
+    "center_down": "mekanismthaumaturge:block/models/multipart/basic_essentia_tube",
+    "side_opaque": "mekanismthaumaturge:block/models/multipart/opaque/basic_essentia_pipe_vertical",
+    "center_opaque": "mekanismthaumaturge:block/models/multipart/opaque/basic_essentia_pipe"
+  }
+}

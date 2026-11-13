@@ -6,7 +6,8 @@ import net.minecraft.util.Util;
 import org.jspecify.annotations.NonNull;
 
 public enum MekanismThaumaturgeLang implements ILangEntry {
-    TRANSMISSION_TYPE_ESSENTIA("transmission", "essentia");
+    TRANSMISSION_TYPE_ESSENTIA("transmission", "essentia"),
+    DESCRIPTION_ESSENTIA_TUBE("description", "essentia_tube");
 
     private final String key;
 

@@ -1,7 +1,6 @@
 package com.blackmoss.mekanismthaumaturge;
 
 import com.blackmoss.mekanismthaumaturge.data.ModBlockLootSubProvider;
-import com.blackmoss.mekanismthaumaturge.data.ModModelProvider;
 import com.blackmoss.mekanismthaumaturge.data.ModRecipeProvider;
 import com.blackmoss.mekanismthaumaturge.data.lang.EnUsProvider;
 import com.blackmoss.mekanismthaumaturge.data.lang.ZhCnProvider;
@@ -33,7 +32,7 @@ public class MekanismThaumaturge {
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public MekanismThaumaturge(IEventBus modEventBus, ModContainer modContainer) {
-        MTBlockEntities.BLOCK_ENTITIES.register(modEventBus);
+        MTBlockEntities.TILE_ENTITY_TYPES.register(modEventBus);
         MTBlocks.BLOCKS.register(modEventBus);
         MTCreativeModeTabs.CREATIVE_MODE_TABS.register(modEventBus);
         MTItems.ITEMS.register(modEventBus);
