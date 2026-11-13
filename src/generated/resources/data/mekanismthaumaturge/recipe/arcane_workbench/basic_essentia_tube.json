@@ -1,0 +1,16 @@
+{
+  "type": "thaumaturge:arcane_workbench_shaped",
+  "crystals": [],
+  "key": {
+    "S": "#c:ingots/steel",
+    "s": "thaumaturge:salis_mundus"
+  },
+  "pattern": [
+    "SsS"
+  ],
+  "result": {
+    "count": 8,
+    "id": "mekanismthaumaturge:basic_essentia_tube"
+  },
+  "vis": 5
+}

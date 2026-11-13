@@ -1,0 +1,18 @@
+{
+  "type": "thaumaturge:arcane_workbench_shaped",
+  "crystals": [],
+  "key": {
+    "A": "#mekanism:alloys/infused",
+    "P": "mekanismthaumaturge:basic_essentia_tube"
+  },
+  "pattern": [
+    "PPP",
+    "PAP",
+    "PPP"
+  ],
+  "result": {
+    "count": 8,
+    "id": "mekanismthaumaturge:advanced_essentia_tube"
+  },
+  "vis": 5
+}
