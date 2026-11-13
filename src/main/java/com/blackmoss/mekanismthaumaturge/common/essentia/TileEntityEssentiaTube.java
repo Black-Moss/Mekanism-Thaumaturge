@@ -4,6 +4,7 @@ import com.blackmoss.mekanismthaumaturge.common.MTTransmission;
 import com.blackmoss.mekanismthaumaturge.registry.MTBlocks;
 import com.leclowndu93150.thaumaturge.api.aspect.IAspect;
 import com.leclowndu93150.thaumaturge.api.essentia.IEssentiaTransport;
+import com.leclowndu93150.thaumaturge.content.essentia.flow.EssentiaFlowHandler;
 import mekanism.api.tier.BaseTier;
 import mekanism.common.block.states.BlockStateHelper;
 import mekanism.common.block.states.TransmitterType;
@@ -47,7 +48,42 @@ public class TileEntityEssentiaTube extends TileEntityTransmitter implements IEs
     @Override
     protected void onUpdateServer(@NonNull ServerLevel level) {
         getTransmitter().pullFromAcceptors(level);
+        autoBalanceThaumaturge(level);
         super.onUpdateServer(level);
+    }
+
+    private void autoBalanceThaumaturge(@NonNull ServerLevel level) {
+        EssentiaTube tube = getTransmitter();
+        int rate = tube.getRate();
+        if (rate <= 0 || (level.getGameTime() + getBlockPos().getX() + getBlockPos().getY() + getBlockPos().getZ()) % 5L != 0L) {
+            return;
+        }
+        for (Direction dir : Direction.values()) {
+            if (!tube.isConnectionType(dir, ConnectionType.NORMAL)) {
+                continue;
+            }
+            IEssentiaTransport neighbour = EssentiaFlowHandler.transport(level, getBlockPos().relative(dir), dir.getOpposite());
+            if (neighbour == null || neighbour instanceof EssentiaTube) {
+                continue;
+            }
+            Direction facing = dir.getOpposite();
+            if (!neighbour.canOutputTo(facing)) {
+                continue;
+            }
+            Holder<IAspect> type = neighbour.getEssentiaType(facing);
+            int amount = neighbour.getEssentiaAmount(facing);
+            if (type == null || amount <= 0) {
+                continue;
+            }
+            Holder<IAspect> held = tube.getStoredType();
+            if (held != null && !held.equals(type)) {
+                continue;
+            }
+            int got = neighbour.takeEssentia(type, Math.min(rate, amount), facing);
+            if (got > 0) {
+                tube.insertEssentia(type, got);
+            }
+        }
     }
 
     @Override

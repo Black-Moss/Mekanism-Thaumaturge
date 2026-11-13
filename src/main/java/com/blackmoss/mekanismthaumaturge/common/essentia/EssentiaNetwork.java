@@ -2,7 +2,9 @@ package com.blackmoss.mekanismthaumaturge.common.essentia;
 
 import com.leclowndu93150.thaumaturge.api.aspect.IAspect;
 import com.leclowndu93150.thaumaturge.api.essentia.IEssentiaTransport;
+import mekanism.common.lib.transmitter.ConnectionType;
 import mekanism.common.lib.transmitter.DynamicBufferedNetwork;
+import mekanism.common.lib.transmitter.acceptor.AcceptorCache;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
@@ -12,11 +14,9 @@ import org.jspecify.annotations.Nullable;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 public class EssentiaNetwork extends DynamicBufferedNetwork<IEssentiaTransport, EssentiaNetwork, EssentiaBuffer, EssentiaTube> {
-
     @Nullable
     private Holder<IAspect> essentiaType;
     private int essentiaAmount;
@@ -116,15 +116,19 @@ public class EssentiaNetwork extends DynamicBufferedNetwork<IEssentiaTransport, 
             return;
         }
         int rate = getRate();
-        for (Map<Direction, IEssentiaTransport> acceptors : acceptorCache.getAcceptorValues()) {
-            for (Map.Entry<Direction, IEssentiaTransport> entry : acceptors.entrySet()) {
-                Direction side = entry.getKey();
-                IEssentiaTransport acceptor = entry.getValue();
-                if (side != null && acceptor != null && remaining > 0) {
-                    int toSend = Math.min(remaining, rate);
-                    int accepted = acceptor.addEssentia(type, toSend, side);
-                    remaining -= Math.clamp(remaining, 0, accepted);
+        for (EssentiaTube tube : getTransmitters()) {
+            AcceptorCache<IEssentiaTransport> cache = tube.getAcceptorCache();
+            for (Direction side : Direction.values()) {
+                if (tube.isConnectionType(side, ConnectionType.PULL)) {
+                    continue;
                 }
+                IEssentiaTransport acceptor = cache.getConnectedAcceptor(side);
+                if (acceptor == null || remaining <= 0) {
+                    continue;
+                }
+                int toSend = Math.min(remaining, rate);
+                int accepted = acceptor.addEssentia(type, toSend, side.getOpposite());
+                remaining -= Math.clamp(remaining, 0, accepted);
             }
         }
         if (remaining != essentiaAmount) {
