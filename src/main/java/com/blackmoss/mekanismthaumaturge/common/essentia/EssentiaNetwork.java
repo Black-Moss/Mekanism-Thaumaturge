@@ -14,12 +14,16 @@ import org.jspecify.annotations.Nullable;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 public class EssentiaNetwork extends DynamicBufferedNetwork<IEssentiaTransport, EssentiaNetwork, EssentiaBuffer, EssentiaTube> {
     @Nullable
     private Holder<IAspect> essentiaType;
     private int essentiaAmount;
+    @Nullable
+    private Holder<IAspect> lastSyncType;
+    private int lastSyncAmount;
 
     public EssentiaNetwork(@NonNull UUID networkID) {
         super(networkID);
@@ -35,7 +39,21 @@ public class EssentiaNetwork extends DynamicBufferedNetwork<IEssentiaTransport, 
         for (EssentiaTube tube : getTransmitters()) {
             rate = Math.max(rate, tube.getRate());
         }
-        return rate > 0 ? rate : 4;
+        return rate > 0 ? rate : 1;
+    }
+
+    @Nullable
+    public Holder<IAspect> getStoredType() {
+        return essentiaType;
+    }
+
+    public int getStored() {
+        return essentiaAmount;
+    }
+
+    public void setClientContents(@Nullable Holder<IAspect> type, int amount) {
+        this.essentiaType = type;
+        this.essentiaAmount = amount;
     }
 
     @Override
@@ -107,6 +125,16 @@ public class EssentiaNetwork extends DynamicBufferedNetwork<IEssentiaTransport, 
     public void onUpdate() {
         super.onUpdate();
         tickEmit();
+        //mekanism 的 transmitter 体系里 needsUpdate 只 post 事件、不发客户端包，客户端液面刷新
+        // 靠传输代码显式 requestsUpdate()（连接变化时基类会调，故“连接/打断”才刷新）。
+        // 这里比较网络 buffer 相对上次同步的变化，一旦变化就主动推送更新包，保证传输中客户端实时刷新。
+        if (essentiaAmount != lastSyncAmount || !Objects.equals(essentiaType, lastSyncType)) {
+            lastSyncAmount = essentiaAmount;
+            lastSyncType = essentiaType;
+            for (EssentiaTube tube : getTransmitters()) {
+                tube.requestsUpdate();
+            }
+        }
     }
 
     private void tickEmit() {

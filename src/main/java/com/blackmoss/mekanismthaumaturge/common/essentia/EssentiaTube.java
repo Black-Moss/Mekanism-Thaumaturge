@@ -8,12 +8,9 @@ import com.leclowndu93150.thaumaturge.api.essentia.IEssentiaTransport;
 import com.mojang.serialization.Codec;
 import mekanism.common.block.attribute.Attribute;
 import mekanism.common.content.network.transmitter.BufferedTransmitter;
-import mekanism.common.lib.transmitter.ConnectionType;
 import mekanism.common.lib.transmitter.acceptor.AcceptorCache;
 import mekanism.common.tier.TubeTier;
 import mekanism.common.tile.transmitter.TileEntityTransmitter;
-import mekanism.common.util.EnumUtils;
-import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
@@ -51,12 +48,13 @@ public class EssentiaTube extends BufferedTransmitter<IEssentiaTransport, Essent
     }
 
     public int getRate() {
-        return switch (tier.getBaseTier()) {
+        int base = switch (tier.getBaseTier()) {
             case ADVANCED -> 16;
             case ELITE -> 64;
             case ULTIMATE -> 256;
             default -> 4;
         };
+        return Math.max(1, base / 10);
     }
 
     @Override
@@ -151,19 +149,33 @@ public class EssentiaTube extends BufferedTransmitter<IEssentiaTransport, Essent
     @Override
     public void write(@NonNull ValueOutput output) {
         super.write(output);
-        if (hasTransmitterNetwork()) {
-            getTransmitterNetworkNN().validateSaveShares(this, null);
-        }
-        Holder<IAspect> type = saveShareType;
-        int amount = saveShareAmount;
-        if (type == null || amount <= 0) {
-            EssentiaBuffer fallback = getShare();
-            type = fallback.type();
-            amount = fallback.amount();
-        }
+        Holder<IAspect> type = getStoredType();
+        int amount = getStored();
         ResourceKey<IAspect> key = type == null ? null : type.unwrapKey().orElse(null);
         output.storeNullable(ESSENTIA_TYPE_KEY, ASPECT_KEY_CODEC, key);
         output.putInt(ESSENTIA_AMOUNT_KEY, amount);
+    }
+
+    @Override
+    public void writeReducedUpdatedTag(@NonNull ValueOutput output) {
+        super.writeReducedUpdatedTag(output);
+        Holder<IAspect> type = getStoredType();
+        int amount = getStored();
+        ResourceKey<IAspect> key = type == null ? null : type.unwrapKey().orElse(null);
+        output.storeNullable(ESSENTIA_TYPE_KEY, ASPECT_KEY_CODEC, key);
+        output.putInt(ESSENTIA_AMOUNT_KEY, amount);
+    }
+
+    @Override
+    protected void handleContentsUpdateTag(@NonNull EssentiaNetwork network, @NonNull ValueInput input) {
+        ResourceKey<IAspect> key = input.read(ESSENTIA_TYPE_KEY, ASPECT_KEY_CODEC).orElse(null);
+        int amount = input.getIntOr(ESSENTIA_AMOUNT_KEY, 0);
+        if (key != null && amount > 0) {
+            Holder<IAspect> holder = Aspects.resolve(getTransmitterTile().getLevel(), key);
+            if (holder != null) {
+                network.setClientContents(holder, amount);
+            }
+        }
     }
 
     public void resolvePendingType(@Nullable Level level) {
@@ -201,51 +213,28 @@ public class EssentiaTube extends BufferedTransmitter<IEssentiaTransport, Essent
 
     @Override
     public void pullFromAcceptors(@NonNull ServerLevel level) {
-        if (!hasPullSide) {
-            return;
-        }
-        int needed = Math.clamp(maxAmount() - bufferAmount, 0, getRate());
-        if (needed == 0) {
-            return;
-        }
-        Holder<IAspect> wanted = bufferType;
-        if (wanted == null && hasTransmitterNetwork()) {
-            wanted = getTransmitterNetworkNN().getBuffer().type();
-        }
-        AcceptorCache<IEssentiaTransport> cache = getAcceptorCache();
-        for (Direction side : EnumUtils.DIRECTIONS) {
-            if (!isConnectionType(side, ConnectionType.PULL)) {
-                continue;
-            }
-            IEssentiaTransport acceptor = cache.getConnectedAcceptor(side);
-            if (acceptor == null) {
-                continue;
-            }
-            Direction facing = side.getOpposite();
-            Holder<IAspect> type = wanted != null ? wanted : acceptor.getEssentiaType(facing);
-            if (type == null) {
-                continue;
-            }
-            int received = acceptor.takeEssentia(type, needed, facing);
-            if (received > 0) {
-                bufferType = type;
-                bufferAmount += received;
-                needed -= received;
-                getTransmitterTile().setChanged();
-            }
-            if (needed <= 0) {
-                break;
-            }
-        }
+        // fku
     }
 
     public @Nullable Holder<IAspect> getStoredType() {
         resolvePending();
-        return hasTransmitterNetwork() ? getTransmitterNetworkNN().getBuffer().type() : bufferType;
+        if (hasTransmitterNetwork()) {
+            Holder<IAspect> type = getTransmitterNetworkNN().getBuffer().type();
+            if (type != null) {
+                return type;
+            }
+        }
+        return bufferType;
     }
 
     public int getStored() {
-        return hasTransmitterNetwork() ? getTransmitterNetworkNN().getBuffer().amount() : bufferAmount;
+        if (hasTransmitterNetwork()) {
+            int amount = getTransmitterNetworkNN().getBuffer().amount();
+            if (amount > 0) {
+                return amount;
+            }
+        }
+        return bufferAmount;
     }
 
     public int getStoredCapacity() {
