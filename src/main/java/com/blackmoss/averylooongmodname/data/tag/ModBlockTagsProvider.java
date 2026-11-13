@@ -1,6 +1,6 @@
 package com.blackmoss.averylooongmodname.data.tag;
 
-import com.blackmoss.averylooongmodname.AVeryLooongModName;
+import com.blackmoss.averylooongmodname.MekanismThaumaturge;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
@@ -12,7 +12,7 @@ public final class ModBlockTagsProvider extends BlockTagsProvider {
     public ModBlockTagsProvider(
             PackOutput output,
             CompletableFuture<HolderLookup.Provider> lookupProvider) {
-        super(output, lookupProvider, AVeryLooongModName.MODID);
+        super(output, lookupProvider, MekanismThaumaturge.MODID);
     }
 
     @Override
@@ -22,6 +22,6 @@ public final class ModBlockTagsProvider extends BlockTagsProvider {
 
     @Override
     public @NonNull String getName() {
-        return "XXX Block Tags";
+        return "Mekanism Thaumaturge Block Tags";
     }
 }

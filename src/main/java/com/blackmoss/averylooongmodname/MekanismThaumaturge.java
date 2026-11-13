@@ -5,10 +5,9 @@ import com.blackmoss.averylooongmodname.data.ModModelProvider;
 import com.blackmoss.averylooongmodname.data.ModRecipeProvider;
 import com.blackmoss.averylooongmodname.data.lang.EnUsProvider;
 import com.blackmoss.averylooongmodname.data.lang.ZhCnProvider;
-import com.blackmoss.averylooongmodname.data.lang.ZhTwProvider;
 import com.blackmoss.averylooongmodname.data.tag.ModBlockTagsProvider;
 import com.blackmoss.averylooongmodname.data.tag.ModItemTagsProvider;
-import com.blackmoss.averylooongmodname.registry.ALMNBlocks;
+import com.blackmoss.averylooongmodname.registry.MTBlocks;
 import com.mojang.logging.LogUtils;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.resources.Identifier;
@@ -24,14 +23,14 @@ import org.slf4j.Logger;
 import java.util.List;
 import java.util.Set;
 
-@EventBusSubscriber(modid = AVeryLooongModName.MODID)
-@Mod(AVeryLooongModName.MODID)
-public class AVeryLooongModName {
-    public static final String MODID = "averylooongmodname";
+@EventBusSubscriber(modid = MekanismThaumaturge.MODID)
+@Mod(MekanismThaumaturge.MODID)
+public class MekanismThaumaturge {
+    public static final String MODID = "mekanismthaumaturge";
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    public AVeryLooongModName(IEventBus modEventBus, ModContainer modContainer) {
-        ALMNBlocks.BLOCKS.register(modEventBus);
+    public MekanismThaumaturge(IEventBus modEventBus, ModContainer modContainer) {
+        MTBlocks.BLOCKS.register(modEventBus);
     }
 
     public static Identifier identifier(String path) {
@@ -42,7 +41,6 @@ public class AVeryLooongModName {
     public static void onGatherData(GatherDataEvent.Client event) {
         event.createProvider(EnUsProvider::new);
         event.createProvider(ZhCnProvider::new);
-        event.createProvider(ZhTwProvider::new);
 
         event.createProvider(ModRecipeProvider.Runner::new);
 

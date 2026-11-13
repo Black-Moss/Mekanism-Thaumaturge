@@ -33,6 +33,11 @@ repositories {
         name = 'Curse Maven'
         url = 'https://cursemaven.com'
     }
+
+    maven {
+        name = "Illusive Soulworks"
+        url = "https://maven.theillusivec4.top/"
+    }
 }
 
 base {
@@ -85,11 +90,30 @@ configurations {
 }
 
 dependencies {
+    // Lithostitched
+    implementation "maven.modrinth:lithostitched:${lithostitched_version}-neoforge-26.1"
+
+    // Thaumaturge
+    implementation "curse.maven:thaumaturge-1628024:${thaumaturge_id}"
+
+    // Mekanism
+    implementation "curse.maven:mekanism-version-locked-1713956:${mekanism_id}"
+    implementation "curse.maven:mekanism-additions-version-locked-1713986:${mekanism_additions_id}"
+    implementation "curse.maven:mekanism-generators-version-locked-1713978:${mekanism_generators_id}"
+    implementation "curse.maven:mekanism-tools-version-locked-1713967:${mekanism_tools_id}"
+
     // JEI
     compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
     compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}"
     compileOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
     runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
+
+    // Curios
+    compileOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}+26.1.2:api"
+    runtimeOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}+26.1.2"
+
+    // Jade
+    implementation "maven.modrinth:jade:${jade_version}+neoforge"
 }
 
 var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
@@ -102,7 +126,9 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
             mod_license            : mod_license,
             mod_version            : mod_version,
             mod_authors            : mod_authors,
-            mod_description        : mod_description
+            mod_description        : mod_description,
+            thaumaturge_version    : thaumaturge_version,
+            mekanism_version       : mekanism_version
     ]
     inputs.properties replaceProperties
     expand replaceProperties
@@ -126,7 +152,7 @@ publishing {
 }
 
 tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8' 
+    options.encoding = 'UTF-8'
 }
 
 idea {

@@ -29,7 +29,7 @@ public final class ModRecipeProvider extends RecipeProvider {
 
         @Override
         public @NonNull String getName() {
-            return "XXX Recipes";
+            return "Mekanism Thaumaturge Recipes";
         }
     }
 }

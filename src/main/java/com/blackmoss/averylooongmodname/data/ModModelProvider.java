@@ -1,6 +1,6 @@
 package com.blackmoss.averylooongmodname.data;
 
-import com.blackmoss.averylooongmodname.AVeryLooongModName;
+import com.blackmoss.averylooongmodname.MekanismThaumaturge;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
@@ -9,7 +9,7 @@ import org.jspecify.annotations.NonNull;
 
 public class ModModelProvider extends ModelProvider {
     public ModModelProvider(PackOutput output) {
-        super(output, AVeryLooongModName.MODID);
+        super(output, MekanismThaumaturge.MODID);
     }
 
     @Override
@@ -18,6 +18,6 @@ public class ModModelProvider extends ModelProvider {
 
     @Override
     public @NonNull String getName() {
-        return "XXX Models";
+        return "Mekanism Thaumaturge Models";
     }
 }

@@ -1,6 +1,6 @@
 package com.blackmoss.averylooongmodname.data;
 
-import com.blackmoss.averylooongmodname.registry.ALMNBlocks;
+import com.blackmoss.averylooongmodname.registry.MTBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
@@ -16,7 +16,7 @@ public class ModBlockLootSubProvider extends BlockLootSubProvider {
 
     @Override
     protected @NonNull Iterable<Block> getKnownBlocks() {
-        return ALMNBlocks.BLOCKS.getEntries().stream().map(holder -> (Block) holder.value()).toList();
+        return MTBlocks.BLOCKS.getEntries().stream().map(holder -> (Block) holder.value()).toList();
     }
 
     @Override
