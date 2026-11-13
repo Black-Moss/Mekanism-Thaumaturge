@@ -10,7 +10,10 @@ import com.blackmoss.mekanismthaumaturge.registry.MTBlockEntities;
 import com.blackmoss.mekanismthaumaturge.registry.MTBlocks;
 import com.blackmoss.mekanismthaumaturge.registry.MTCreativeModeTabs;
 import com.blackmoss.mekanismthaumaturge.registry.MTItems;
+import com.leclowndu93150.thaumaturge.api.aspect.IAspect;
+import com.leclowndu93150.thaumaturge.data.worldgen.aspect.AspectBootstrap;
 import com.mojang.logging.LogUtils;
+import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
@@ -44,6 +47,10 @@ public class MekanismThaumaturge {
 
     @SubscribeEvent
     public static void onGatherData(GatherDataEvent.Client event) {
+        RegistrySetBuilder registries = new RegistrySetBuilder()
+                .add(IAspect.REGISTRY_KEY, AspectBootstrap::bootstrap);
+        event.createDatapackRegistryObjects(registries);
+
         event.createProvider(EnUsProvider::new);
         event.createProvider(ZhCnProvider::new);
 

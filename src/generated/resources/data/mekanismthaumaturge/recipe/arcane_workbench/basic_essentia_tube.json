@@ -2,11 +2,11 @@
   "type": "thaumaturge:arcane_workbench_shaped",
   "crystals": [],
   "key": {
-    "S": "#c:ingots/steel",
-    "s": "thaumaturge:salis_mundus"
+    "M": "thaumaturge:salis_mundus",
+    "S": "#c:ingots/steel"
   },
   "pattern": [
-    "SsS"
+    "SMS"
   ],
   "result": {
     "count": 8,
