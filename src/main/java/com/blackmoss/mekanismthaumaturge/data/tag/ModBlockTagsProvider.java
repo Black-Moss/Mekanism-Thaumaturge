@@ -1,8 +1,11 @@
 package com.blackmoss.mekanismthaumaturge.data.tag;
 
 import com.blackmoss.mekanismthaumaturge.MekanismThaumaturge;
+import com.blackmoss.mekanismthaumaturge.registry.MTBlocks;
+import mekanism.common.tags.MekanismTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import org.jspecify.annotations.NonNull;
 
@@ -17,7 +20,17 @@ public final class ModBlockTagsProvider extends BlockTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.@NonNull Provider provider) {
+        tag(MekanismTags.Blocks.CARDBOARD_BLACKLIST)
+                .add(MTBlocks.BASIC_ESSENTIA_TUBE.get())
+                .add(MTBlocks.ADVANCED_ESSENTIA_TUBE.get())
+                .add(MTBlocks.ELITE_ESSENTIA_TUBE.get())
+                .add(MTBlocks.ULTIMATE_ESSENTIA_TUBE.get());
 
+        tag(Tags.Blocks.RELOCATION_NOT_SUPPORTED)
+                .add(MTBlocks.BASIC_ESSENTIA_TUBE.get())
+                .add(MTBlocks.ADVANCED_ESSENTIA_TUBE.get())
+                .add(MTBlocks.ELITE_ESSENTIA_TUBE.get())
+                .add(MTBlocks.ULTIMATE_ESSENTIA_TUBE.get());
     }
 
     @Override
