@@ -2,6 +2,7 @@ package com.blackmoss.mekanismthaumaturge.data;
 
 import com.blackmoss.mekanismthaumaturge.MekanismThaumaturge;
 import com.blackmoss.mekanismthaumaturge.registry.MTBlocks;
+import com.blackmoss.mekanismthaumaturge.registry.MTItemTags;
 import com.leclowndu93150.thaumaturge.TTIds;
 import com.leclowndu93150.thaumaturge.api.aspect.AspectInstance;
 import com.leclowndu93150.thaumaturge.api.aspect.IAspect;
@@ -12,6 +13,7 @@ import com.leclowndu93150.thaumaturge.data.recipe.builders.workbench.ArcaneWorkb
 import com.leclowndu93150.thaumaturge.data.recipe.builders.workbench.ArcaneWorkbenchShapelessRecipeBuilder;
 import com.leclowndu93150.thaumaturge.registry.TTDataComponents;
 import com.leclowndu93150.thaumaturge.registry.TTItems;
+import mekanism.client.recipe_viewer.jei.machine.MetallurgicInfuserRecipeCategory;
 import mekanism.common.tags.MekanismTags;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
@@ -60,7 +62,7 @@ public final class ModRecipeProvider extends RecipeProvider {
     private void essentiaTube() {
         arcaneShaped(MTBlocks.BASIC_ESSENTIA_TUBE.asItem(), 8, 5)
                 .pattern("SMS")
-                .define('S', MekanismTags.Items.INGOTS_STEEL)
+                .define('S', MTItemTags.INGOTS_THAUMSTEEL)
                 .define('M', TTItems.SALIS_MUNDUS.get())
                 .save(output);
         arcaneShaped(MTBlocks.ADVANCED_ESSENTIA_TUBE.asItem(), 8, 5)
