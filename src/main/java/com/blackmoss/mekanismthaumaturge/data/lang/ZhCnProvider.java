@@ -14,6 +14,7 @@ public class ZhCnProvider extends LanguageProvider {
     protected void addTranslations() {
         add("itemGroup.mekanismthaumaturge", "通用神秘");
         jade();
+        gui();
 
         addBlock(MTBlocks.BASIC_ESSENTIA_TUBE, "基础源质管道");
         addBlock(MTBlocks.ADVANCED_ESSENTIA_TUBE, "高级源质管道");
@@ -30,6 +31,6 @@ public class ZhCnProvider extends LanguageProvider {
     }
 
     private void gui() {
-        add("gui.mekanismthaumaturge.essentia", "源质：1$s");
+        add("gui.mekanismthaumaturge.essentia", "源质：%1$s");
     }
 }

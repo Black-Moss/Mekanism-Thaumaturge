@@ -61,12 +61,19 @@ public class MekanismThaumaturgeClient {
 
             int scale = display.getScaledLevel(width - 2);
             if (scale > 0) {
-                GuiUtils.drawTiledSprite(graphics, x + 1, y + 1, height - 2, scale, height - 2,
-                        MekanismRenderer.getSprite(GLOW_TEXTURE), 16, 16, 0, GuiUtils.TilingDirection.DOWN_RIGHT,
+                GuiUtils.drawTiledSprite(graphics,
+                        x + 1,
+                        y + 1,
+                        height - 2,
+                        scale,
+                        height - 2,
+                        MekanismRenderer.getSprite(GLOW_TEXTURE),
+                        16, 16,
+                        0, GuiUtils.TilingDirection.DOWN_RIGHT,
                         0xFF000000 | display.color());
             }
             graphics.text(Minecraft.getInstance().font,
-                    Component.literal("源质 " + display.amount() + "/" + display.capacity()),
+                    Component.literal(display.amount() + "/" + display.capacity()),
                     x + 3, y + 3, 0xFFFFFFFF, false);
         }
     }

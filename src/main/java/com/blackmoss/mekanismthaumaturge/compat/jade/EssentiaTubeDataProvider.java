@@ -42,7 +42,7 @@ public class EssentiaTubeDataProvider implements IServerDataProvider<BlockAccess
         data.putInt(KEY_CAPACITY, transmitter.getStoredCapacity());
         data.putInt(KEY_LOCAL, transmitter.getShare().amount());
         data.putBoolean(KEY_IN_NETWORK, transmitter.hasTransmitterNetwork());
-        String typeName = type == null ? "" : type.unwrapKey().map(key -> key.identifier().toString()).orElse("");
+        String typeName = type == null ? "" : type.unwrapKey().map(key -> key.identifier().getPath()).orElse("");
         int color = type == null ? 0xFFFFFFFF : type.value().color();
         data.put(KEY_DISPLAY, accessor.encodeAsNbt(Display.CODEC,
                 new Display(transmitter.getStored(), transmitter.getStoredCapacity(), transmitter.getShare().amount(), color, typeName)));
@@ -62,7 +62,7 @@ public class EssentiaTubeDataProvider implements IServerDataProvider<BlockAccess
             if (capacity <= 0 || amount <= 0) {
                 return 0;
             }
-            return Math.min(level, (int) (level * (amount / (double) capacity)));
+            return Math.min(level, (int) (level * amount / (double) capacity));
         }
     }
 }

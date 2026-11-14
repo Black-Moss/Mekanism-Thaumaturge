@@ -5,7 +5,8 @@
   "mixins": [
     "TileComponentConfigMixin",
     "TransmissionTypeMixin",
-    "TransmitterTypeMixin"
+    "TransmitterTypeMixin",
+    "LookingAtUtilsMixin"
   ],
   "client": [
     "client.GuiConfigTypeTabMixin",

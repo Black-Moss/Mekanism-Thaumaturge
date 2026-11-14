@@ -13,6 +13,8 @@ public class EnUsProvider extends LanguageProvider {
     @Override
     protected void addTranslations() {
         add("itemGroup.mekanismthaumaturge", "Mekanism Thaumaturge");
+        jade();
+        gui();
 
         addBlock(MTBlocks.BASIC_ESSENTIA_TUBE, "Basic Essentia Tube");
         addBlock(MTBlocks.ADVANCED_ESSENTIA_TUBE, "Advanced Essentia Tube");
@@ -26,5 +28,9 @@ public class EnUsProvider extends LanguageProvider {
 
     private void jade() {
         add("config.jade.plugin_mekanismthaumaturge.essentia_tube", "Essentia Tube");
+    }
+
+    private void gui() {
+        add("gui.mekanismthaumaturge.essentia", "Essentia: %1$s");
     }
 }
