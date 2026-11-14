@@ -45,7 +45,10 @@ public class MekanismThaumaturgeClient {
 
         @Override
         public @Nullable Component getNarration() {
-            return Component.literal(display.typeName().isEmpty() ? "源质" : display.typeName());
+            if (display.typeName().isEmpty()) {
+                return Component.translatable("gui.mekanismthaumaturge.essentia_narration");
+            }
+            return Component.translatable("gui.mekanismthaumaturge.essentia", display.typeName());
         }
 
         @Override
@@ -73,7 +76,7 @@ public class MekanismThaumaturgeClient {
                         0xFF000000 | display.color());
             }
             graphics.text(Minecraft.getInstance().font,
-                    Component.literal(display.amount() + "/" + display.capacity()),
+                    Component.translatable("gui.mekanismthaumaturge.essentia_amount", display.amount(), display.capacity()),
                     x + 3, y + 3, 0xFFFFFFFF, false);
         }
     }

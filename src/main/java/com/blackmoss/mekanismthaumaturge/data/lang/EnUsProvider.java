@@ -32,5 +32,10 @@ public class EnUsProvider extends LanguageProvider {
 
     private void gui() {
         add("gui.mekanismthaumaturge.essentia", "Essentia: %1$s");
+        add("gui.mekanismthaumaturge.essentia_empty", "None");
+        add("gui.mekanismthaumaturge.essentia_local", "Local buffer: %1$d");
+        add("gui.mekanismthaumaturge.essentia_no_network", " (not in a network)");
+        add("gui.mekanismthaumaturge.essentia_amount", "%1$d / %2$d");
+        add("gui.mekanismthaumaturge.essentia_narration", "Essentia");
     }
 }

@@ -18,8 +18,6 @@ import snownee.jade.api.config.IPluginConfig;
 public class EssentiaTubeClientProvider implements IBlockComponentProvider {
     public static final EssentiaTubeClientProvider INSTANCE = new EssentiaTubeClientProvider();
 
-    private static final String PREFIX = "jade.mekanismthaumaturge.essentia_tube.";
-
     @Override
     public @NonNull Identifier getUid() {
         return MekanismThaumaturge.identifier("essentia_tube");
@@ -46,7 +44,21 @@ public class EssentiaTubeClientProvider implements IBlockComponentProvider {
             Holder<IAspect> held = transmitter.getStoredType();
             type = held == null ? "" : held.unwrapKey().map(key -> key.identifier().toString()).orElse("");
         }
-        tooltip.add(Component.literal("源质: " + (type.isEmpty() ? "无" : type)));
-        tooltip.add(Component.literal("本地缓存: " + local + (inNetwork ? "" : " (未接入网络)")));
+        Component typeText;
+        if (type.isEmpty()) {
+            typeText = Component.translatable("gui.mekanismthaumaturge.essentia_empty");
+        } else {
+            int colon = type.indexOf(':');
+            String namespace = colon < 0 ? "thaumaturge" : type.substring(0, colon);
+            String path = colon < 0 ? type : type.substring(colon + 1);
+            typeText = Component.translatable("gui.mekanismthaumaturge.essentia",
+                    Component.translatable("aspect." + namespace + "." + path));
+        }
+        tooltip.add(typeText);
+        Component localText = Component.translatable("gui.mekanismthaumaturge.essentia_local", local);
+        if (!inNetwork) {
+            localText = localText.copy().append(Component.translatable("gui.mekanismthaumaturge.essentia_no_network"));
+        }
+        tooltip.add(localText);
     }
 }

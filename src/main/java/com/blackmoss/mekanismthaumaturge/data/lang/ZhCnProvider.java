@@ -32,5 +32,10 @@ public class ZhCnProvider extends LanguageProvider {
 
     private void gui() {
         add("gui.mekanismthaumaturge.essentia", "源质：%1$s");
+        add("gui.mekanismthaumaturge.essentia_empty", "无");
+        add("gui.mekanismthaumaturge.essentia_local", "本地缓存：%1$d");
+        add("gui.mekanismthaumaturge.essentia_no_network", "（未接入网络）");
+        add("gui.mekanismthaumaturge.essentia_amount", "%1$d / %2$d");
+        add("gui.mekanismthaumaturge.essentia_narration", "源质");
     }
 }

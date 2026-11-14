@@ -6,6 +6,11 @@
   "config.jade.plugin_mekanismthaumaturge.essentia_tube": "源质管道",
   "description.mekanismthaumaturge.essentia_tube": "在相连的方块之间传输源质。",
   "gui.mekanismthaumaturge.essentia": "源质：%1$s",
+  "gui.mekanismthaumaturge.essentia_amount": "%1$d / %2$d",
+  "gui.mekanismthaumaturge.essentia_empty": "无",
+  "gui.mekanismthaumaturge.essentia_local": "本地缓存：%1$d",
+  "gui.mekanismthaumaturge.essentia_narration": "源质",
+  "gui.mekanismthaumaturge.essentia_no_network": "（未接入网络）",
   "itemGroup.mekanismthaumaturge": "通用神秘",
   "network.mekanismthaumaturge.essentia": "源质网络",
   "transmission.mekanismthaumaturge.essentia": "源质"
