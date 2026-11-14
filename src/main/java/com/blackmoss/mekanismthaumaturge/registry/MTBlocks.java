@@ -1,7 +1,7 @@
 package com.blackmoss.mekanismthaumaturge.registry;
 
 import com.blackmoss.mekanismthaumaturge.MekanismThaumaturge;
-import com.blackmoss.mekanismthaumaturge.common.essentia.TileEntityEssentiaTube;
+import com.blackmoss.mekanismthaumaturge.block.EssentiaTubeBlockEntity;
 import mekanism.api.tier.ITier;
 import mekanism.common.block.attribute.AttributeTier;
 import mekanism.common.block.transmitter.BlockLargeTransmitter;
@@ -13,17 +13,17 @@ import net.minecraft.world.item.BlockItem;
 public final class MTBlocks {
     public static final BlockDeferredRegister BLOCKS = new BlockDeferredRegister(MekanismThaumaturge.MODID);
 
-    public static final BlockRegistryObject<BlockLargeTransmitter<TileEntityEssentiaTube>, BlockItem> BASIC_ESSENTIA_TUBE =
+    public static final BlockRegistryObject<BlockLargeTransmitter<EssentiaTubeBlockEntity>, BlockItem> BASIC_ESSENTIA_TUBE =
             registerEssentiaTube(MTBlockTypes.BASIC_ESSENTIA_TUBE);
-    public static final BlockRegistryObject<BlockLargeTransmitter<TileEntityEssentiaTube>, BlockItem> ADVANCED_ESSENTIA_TUBE =
+    public static final BlockRegistryObject<BlockLargeTransmitter<EssentiaTubeBlockEntity>, BlockItem> ADVANCED_ESSENTIA_TUBE =
             registerEssentiaTube(MTBlockTypes.ADVANCED_ESSENTIA_TUBE);
-    public static final BlockRegistryObject<BlockLargeTransmitter<TileEntityEssentiaTube>, BlockItem> ELITE_ESSENTIA_TUBE =
+    public static final BlockRegistryObject<BlockLargeTransmitter<EssentiaTubeBlockEntity>, BlockItem> ELITE_ESSENTIA_TUBE =
             registerEssentiaTube(MTBlockTypes.ELITE_ESSENTIA_TUBE);
-    public static final BlockRegistryObject<BlockLargeTransmitter<TileEntityEssentiaTube>, BlockItem> ULTIMATE_ESSENTIA_TUBE =
+    public static final BlockRegistryObject<BlockLargeTransmitter<EssentiaTubeBlockEntity>, BlockItem> ULTIMATE_ESSENTIA_TUBE =
             registerEssentiaTube(MTBlockTypes.ULTIMATE_ESSENTIA_TUBE);
 
-    private static BlockRegistryObject<BlockLargeTransmitter<TileEntityEssentiaTube>, BlockItem> registerEssentiaTube(
-            BlockTypeTile<TileEntityEssentiaTube> type) {
+    private static BlockRegistryObject<BlockLargeTransmitter<EssentiaTubeBlockEntity>, BlockItem> registerEssentiaTube(
+            BlockTypeTile<EssentiaTubeBlockEntity> type) {
         ITier tier = type.getOrThrow(AttributeTier.class).tier();
         return BLOCKS.register(tier.getBaseTier().getLowerName() + "_essentia_tube",
                 properties -> new BlockLargeTransmitter<>(type, properties), BlockItem::new);

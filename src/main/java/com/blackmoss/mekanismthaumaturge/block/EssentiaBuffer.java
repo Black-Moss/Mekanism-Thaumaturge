@@ -1,4 +1,4 @@
-package com.blackmoss.mekanismthaumaturge.common.essentia;
+package com.blackmoss.mekanismthaumaturge.block;
 
 import com.leclowndu93150.thaumaturge.api.aspect.IAspect;
 import net.minecraft.core.Holder;

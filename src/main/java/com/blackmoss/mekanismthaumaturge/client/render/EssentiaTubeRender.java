@@ -1,7 +1,8 @@
-package com.blackmoss.mekanismthaumaturge.client.render.essentia;
+package com.blackmoss.mekanismthaumaturge.client.render;
 
-import com.blackmoss.mekanismthaumaturge.common.essentia.EssentiaTube;
-import com.blackmoss.mekanismthaumaturge.common.essentia.TileEntityEssentiaTube;
+import com.blackmoss.mekanismthaumaturge.block.EssentiaTube;
+import com.blackmoss.mekanismthaumaturge.block.EssentiaTubeBlockEntity;
+import com.leclowndu93150.thaumaturge.TTIds;
 import com.leclowndu93150.thaumaturge.api.aspect.IAspect;
 import com.mojang.blaze3d.vertex.PoseStack;
 import mekanism.client.render.MekanismRenderer;
@@ -33,13 +34,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-public class RenderEssentiaTube extends RenderTransmitterBase<TileEntityEssentiaTube, PipeRenderState> {
+public class EssentiaTubeRender extends RenderTransmitterBase<EssentiaTubeBlockEntity, PipeRenderState> {
     private static final int STAGES = 100;
     private static final float HEIGHT = 0.45F;
     private static final float OFFSET = 0.02F;
-    private static final Identifier GLOW_TEXTURE = Identifier.tryParse("thaumaturge:block/animatedglow");
+    private static final Identifier GLOW_TEXTURE = TTIds.rl("block/animatedglow");
 
-    public RenderEssentiaTube(BlockEntityRendererProvider.Context context) {
+    public EssentiaTubeRender(BlockEntityRendererProvider.Context context) {
         super(context);
     }
 
@@ -50,7 +51,7 @@ public class RenderEssentiaTube extends RenderTransmitterBase<TileEntityEssentia
 
     @Override
     public void extractRenderState(
-            @NonNull TileEntityEssentiaTube tile,
+            @NonNull EssentiaTubeBlockEntity tile,
             @NonNull PipeRenderState state,
             float partialTick,
             @NonNull Vec3 cameraPosition,
@@ -62,26 +63,27 @@ public class RenderEssentiaTube extends RenderTransmitterBase<TileEntityEssentia
             return;
         }
         int amount = transmitter.getStored();
-        long capacity = transmitter.getCapacity();
+        long capacity = transmitter.getStoredCapacity();
         if (capacity <= 0) {
             capacity = 1;
         }
         if (amount <= 0) {
             return;
         }
-        float rawScale = (float) amount / (float) capacity;
-        float scale = Math.max((float) Math.cbrt(rawScale), 0.3F);
+        float scale;
+        if (transmitter.hasTransmitterNetwork()) {
+            scale = Math.clamp(transmitter.getTransmitterNetworkNN().currentScale, 0F, 1F);
+        } else {
+            float rawScale = (float) amount / (float) capacity;
+            scale = Math.clamp(Math.max((float) Math.cbrt(rawScale), 0.3F), 0F, 1F);
+        }
         state.currentScale = scale;
-        TextureAtlasSprite glowSprite = null;
-        if (GLOW_TEXTURE != null) {
-            glowSprite = MekanismRenderer.getSprite(GLOW_TEXTURE);
-        }
-        if (glowSprite != null) {
-            state.fluidTexture = MekanismRenderer.getSinglePicker(glowSprite);
-        }
+        TextureAtlasSprite glowSprite;
+        glowSprite = MekanismRenderer.getSprite(GLOW_TEXTURE);
+        state.fluidTexture = MekanismRenderer.getSinglePicker(glowSprite);
         int color = type.value().color();
         state.fluidTint = 0xFF000000 | color;
-        state.stage = Math.max(3, (int) (scale * (STAGES - 1)));
+        state.stage = Math.clamp(Math.max(3, (int) (scale * (STAGES - 1))), 3, STAGES - 1);
         state.glow = state.lightCoords;
 
         List<String> connectionContents = new ArrayList<>();
@@ -229,10 +231,10 @@ public class RenderEssentiaTube extends RenderTransmitterBase<TileEntityEssentia
     }
 
     @Override
-    protected boolean shouldRenderTransmitter(@NonNull TileEntityEssentiaTube tile, @NonNull Vec3 camera) {
+    protected boolean shouldRenderTransmitter(@NonNull EssentiaTubeBlockEntity tile, @NonNull Vec3 camera) {
         EssentiaTube tube = tile.getTransmitter();
         return super.shouldRenderTransmitter(tile, camera)
-            && tube.getStoredType() != null
-            && tube.getStored() > 0;
+                && tube.getStoredType() != null
+                && tube.getStored() > 0;
     }
 }

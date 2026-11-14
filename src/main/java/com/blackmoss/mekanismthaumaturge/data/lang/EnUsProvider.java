@@ -23,4 +23,8 @@ public class EnUsProvider extends LanguageProvider {
         add("transmission.mekanismthaumaturge.essentia", "Essentia");
         add("network.mekanismthaumaturge.essentia", "Essentia Network");
     }
+
+    private void jade() {
+        add("config.jade.plugin_mekanismthaumaturge.essentia_tube", "Essentia Tube");
+    }
 }

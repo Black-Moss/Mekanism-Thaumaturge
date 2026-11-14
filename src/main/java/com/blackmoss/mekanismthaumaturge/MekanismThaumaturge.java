@@ -1,6 +1,7 @@
 package com.blackmoss.mekanismthaumaturge;
 
 import com.blackmoss.mekanismthaumaturge.data.ModBlockLootSubProvider;
+import com.blackmoss.mekanismthaumaturge.network.PacketEssentiaNetworkSync;
 import com.blackmoss.mekanismthaumaturge.data.ModRecipeProvider;
 import com.blackmoss.mekanismthaumaturge.data.lang.EnUsProvider;
 import com.blackmoss.mekanismthaumaturge.data.lang.ZhCnProvider;
@@ -39,6 +40,7 @@ public class MekanismThaumaturge {
         MTBlocks.BLOCKS.register(modEventBus);
         MTCreativeModeTabs.CREATIVE_MODE_TABS.register(modEventBus);
         MTItems.ITEMS.register(modEventBus);
+        modEventBus.addListener(PacketEssentiaNetworkSync::registerPayloads);
     }
 
     public static Identifier identifier(String path) {

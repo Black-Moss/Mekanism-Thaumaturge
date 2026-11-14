@@ -13,6 +13,7 @@ public class ZhCnProvider extends LanguageProvider {
     @Override
     protected void addTranslations() {
         add("itemGroup.mekanismthaumaturge", "通用神秘");
+        jade();
 
         addBlock(MTBlocks.BASIC_ESSENTIA_TUBE, "基础源质管道");
         addBlock(MTBlocks.ADVANCED_ESSENTIA_TUBE, "高级源质管道");
@@ -22,5 +23,13 @@ public class ZhCnProvider extends LanguageProvider {
         add("description.mekanismthaumaturge.essentia_tube", "在相连的方块之间传输源质。");
         add("transmission.mekanismthaumaturge.essentia", "源质");
         add("network.mekanismthaumaturge.essentia", "源质网络");
+    }
+
+    private void jade() {
+        add("config.jade.plugin_mekanismthaumaturge.essentia_tube", "源质管道");
+    }
+
+    private void gui() {
+        add("gui.mekanismthaumaturge.essentia", "源质：1$s");
     }
 }

@@ -1,4 +1,4 @@
-package com.blackmoss.mekanismthaumaturge.common.essentia;
+package com.blackmoss.mekanismthaumaturge.block;
 
 import com.blackmoss.mekanismthaumaturge.common.MTTransmission;
 import com.blackmoss.mekanismthaumaturge.registry.MTBlocks;
@@ -16,15 +16,16 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueOutput;
 import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
-public class TileEntityEssentiaTube extends TileEntityTransmitter implements IEssentiaTransport {
+public class EssentiaTubeBlockEntity extends TileEntityTransmitter implements IEssentiaTransport {
     @Nullable
     private Holder<IAspect> suctionType;
     private int suctionAmount;
 
-    public TileEntityEssentiaTube(Holder<Block> blockProvider, BlockPos pos, BlockState state) {
+    public EssentiaTubeBlockEntity(Holder<Block> blockProvider, BlockPos pos, BlockState state) {
         super(blockProvider, pos, state);
     }
 
@@ -46,7 +47,14 @@ public class TileEntityEssentiaTube extends TileEntityTransmitter implements IEs
 
     @Override
     protected void onUpdateServer(@NonNull ServerLevel level) {
+        getTransmitter().pullFromAcceptors(level);
         super.onUpdateServer(level);
+    }
+
+    @Override
+    protected void writeUpdatedTag(@NonNull ValueOutput output) {
+        super.writeUpdatedTag(output);
+        getTransmitter().writeStateTo(output);
     }
 
     @Override
@@ -75,20 +83,17 @@ public class TileEntityEssentiaTube extends TileEntityTransmitter implements IEs
 
     @Override
     public int takeEssentia(Holder<IAspect> type, int count, Direction side) {
-        if (type == null || side == null || count <= 0) {
-            return 0;
-        }
-        return getTransmitter().extractEssentia(type, count);
+        return 0;
     }
 
     @Override
     public @Nullable Holder<IAspect> getEssentiaType(@Nullable Direction side) {
-        return getTransmitter().getStoredType();
+        return null;
     }
 
     @Override
     public int getEssentiaAmount(@Nullable Direction side) {
-        return getTransmitter().getStored();
+        return 0;
     }
 
     @Override
@@ -119,20 +124,12 @@ public class TileEntityEssentiaTube extends TileEntityTransmitter implements IEs
 
     @Override
     public boolean canOutputTo(Direction side) {
-        if (side == null) {
-            return false;
-        }
-        EssentiaTube tube = getTransmitter();
-        return tube.isConnectionType(side, ConnectionType.NORMAL) || tube.isConnectionType(side, ConnectionType.PUSH);
+        return false;
     }
 
     @Override
     public boolean canInputFrom(Direction side) {
-        if (side == null) {
-            return false;
-        }
-        EssentiaTube tube = getTransmitter();
-        return tube.isConnectionType(side, ConnectionType.NORMAL) || tube.isConnectionType(side, ConnectionType.PULL);
+        return false;
     }
 
     @Override
