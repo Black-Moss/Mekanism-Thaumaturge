@@ -72,7 +72,12 @@ public class EssentiaTube extends BufferedTransmitter<IEssentiaTransport, Essent
     }
 
     public int getTransferRate() {
-        return Math.max(1, tier.getTransferRate() / 10);
+        return switch (tier.getBaseTier()) {
+            case ADVANCED -> 4;
+            case ELITE -> 16;
+            case ULTIMATE -> 64;
+            default -> 1;
+        };
     }
 
     @Override
@@ -284,14 +289,12 @@ public class EssentiaTube extends BufferedTransmitter<IEssentiaTransport, Essent
                 if (hasTransmitterNetwork() && !getTransmitterNetworkNN().canAcceptEssentia(type)) {
                     continue;
                 }
-                int spaceFor = acceptor.spaceFor(type, facing);
-                if (spaceFor <= 0) {
+                int jarBefore = acceptor.getEssentiaAmount(facing);
+                if (jarBefore <= 0) {
                     continue;
                 }
-                int want = Math.min(Math.min(getTransferRate(), space), spaceFor);
-                int jarBefore = acceptor.getEssentiaAmount(facing);
+                int want = Math.min(Math.min(getTransferRate(), space), jarBefore);
                 int removed = journal.extract(acceptor, type, want, facing, transaction);
-                int jarAfter = acceptor.getEssentiaAmount(facing);
                 if (removed <= 0) {
                     continue;
                 }

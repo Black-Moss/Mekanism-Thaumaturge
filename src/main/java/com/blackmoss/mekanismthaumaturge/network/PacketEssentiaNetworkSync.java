@@ -40,6 +40,7 @@ public record PacketEssentiaNetworkSync(
             ByteBufCodecs.FLOAT, PacketEssentiaNetworkSync::scale,
             PacketEssentiaNetworkSync::new
     );
+    private static final Map<UUID, PacketEssentiaNetworkSync> pendingSyncs = new HashMap<>();
 
     public PacketEssentiaNetworkSync(EssentiaNetwork network) {
         this(network.getUUID(), typeKeyOf(network.getStoredType()), network.getStored(), network.currentScale);
@@ -48,25 +49,6 @@ public record PacketEssentiaNetworkSync(
     private static String typeKeyOf(@Nullable Holder<IAspect> type) {
         return type == null ? "" : type.unwrapKey().map(key -> key.identifier().toString()).orElse("");
     }
-
-    @Override
-    public CustomPacketPayload.@NonNull Type<PacketEssentiaNetworkSync> type() {
-        return TYPE;
-    }
-
-    public void applyTo(EssentiaNetwork network, Level level) {
-        Holder<IAspect> holder = null;
-        if (!typeKey.isEmpty()) {
-            try {
-                holder = Aspects.resolve(level, ResourceKey.create(IAspect.REGISTRY_KEY, Identifier.parse(typeKey)));
-            } catch (Exception _) {
-            }
-        }
-        network.setClientContents(holder, amount);
-        network.currentScale = scale;
-    }
-
-    private static final Map<UUID, PacketEssentiaNetworkSync> pendingSyncs = new HashMap<>();
 
     static void queueOrApply(PacketEssentiaNetworkSync sync) {
         Level level = Minecraft.getInstance().level;
@@ -95,5 +77,22 @@ public record PacketEssentiaNetworkSync(
         PayloadRegistrar registrar = event.registrar("1");
         registrar.playToClient(TYPE, STREAM_CODEC, (payload, context) ->
                 context.enqueueWork(() -> queueOrApply(payload)));
+    }
+
+    @Override
+    public CustomPacketPayload.@NonNull Type<PacketEssentiaNetworkSync> type() {
+        return TYPE;
+    }
+
+    public void applyTo(EssentiaNetwork network, Level level) {
+        Holder<IAspect> holder = null;
+        if (!typeKey.isEmpty()) {
+            try {
+                holder = Aspects.resolve(level, ResourceKey.create(IAspect.REGISTRY_KEY, Identifier.parse(typeKey)));
+            } catch (Exception _) {
+            }
+        }
+        network.setClientContents(holder, amount);
+        network.currentScale = scale;
     }
 }

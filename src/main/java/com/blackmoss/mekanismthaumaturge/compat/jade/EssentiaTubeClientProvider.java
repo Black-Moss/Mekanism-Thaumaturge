@@ -47,7 +47,6 @@ public class EssentiaTubeClientProvider implements IBlockComponentProvider {
             type = held == null ? "" : held.unwrapKey().map(key -> key.identifier().toString()).orElse("");
         }
         tooltip.add(Component.literal("源质: " + (type.isEmpty() ? "无" : type)));
-        tooltip.add(Component.literal("网络存量: " + amount + " / " + capacity));
         tooltip.add(Component.literal("本地缓存: " + local + (inNetwork ? "" : " (未接入网络)")));
     }
 }

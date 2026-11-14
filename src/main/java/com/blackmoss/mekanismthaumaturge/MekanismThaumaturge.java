@@ -1,12 +1,12 @@
 package com.blackmoss.mekanismthaumaturge;
 
 import com.blackmoss.mekanismthaumaturge.data.ModBlockLootSubProvider;
-import com.blackmoss.mekanismthaumaturge.network.PacketEssentiaNetworkSync;
 import com.blackmoss.mekanismthaumaturge.data.ModRecipeProvider;
 import com.blackmoss.mekanismthaumaturge.data.lang.EnUsProvider;
 import com.blackmoss.mekanismthaumaturge.data.lang.ZhCnProvider;
 import com.blackmoss.mekanismthaumaturge.data.tag.ModBlockTagsProvider;
 import com.blackmoss.mekanismthaumaturge.data.tag.ModItemTagsProvider;
+import com.blackmoss.mekanismthaumaturge.network.PacketEssentiaNetworkSync;
 import com.blackmoss.mekanismthaumaturge.registry.MTBlockEntities;
 import com.blackmoss.mekanismthaumaturge.registry.MTBlocks;
 import com.blackmoss.mekanismthaumaturge.registry.MTCreativeModeTabs;

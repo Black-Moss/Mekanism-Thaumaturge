@@ -1,7 +1,7 @@
 package com.blackmoss.mekanismthaumaturge.registry;
 
-import com.blackmoss.mekanismthaumaturge.common.MekanismThaumaturgeLang;
 import com.blackmoss.mekanismthaumaturge.block.EssentiaTubeBlockEntity;
+import com.blackmoss.mekanismthaumaturge.common.MekanismThaumaturgeLang;
 import mekanism.common.block.attribute.AttributeTier;
 import mekanism.common.content.blocktype.BlockTypeTile;
 import mekanism.common.content.blocktype.BlockTypeTile.BlockTileBuilder;

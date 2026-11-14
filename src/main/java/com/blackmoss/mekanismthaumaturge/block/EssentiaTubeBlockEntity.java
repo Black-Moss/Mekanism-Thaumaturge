@@ -83,17 +83,20 @@ public class EssentiaTubeBlockEntity extends TileEntityTransmitter implements IE
 
     @Override
     public int takeEssentia(Holder<IAspect> type, int count, Direction side) {
-        return 0;
+        if (type == null || side == null || count <= 0) {
+            return 0;
+        }
+        return getTransmitter().extractEssentia(type, count);
     }
 
     @Override
     public @Nullable Holder<IAspect> getEssentiaType(@Nullable Direction side) {
-        return null;
+        return getTransmitter().getStoredType();
     }
 
     @Override
     public int getEssentiaAmount(@Nullable Direction side) {
-        return 0;
+        return getTransmitter().getStored();
     }
 
     @Override
@@ -124,12 +127,20 @@ public class EssentiaTubeBlockEntity extends TileEntityTransmitter implements IE
 
     @Override
     public boolean canOutputTo(Direction side) {
-        return false;
+        if (side == null) {
+            return false;
+        }
+        EssentiaTube tube = getTransmitter();
+        return tube.isConnectionType(side, ConnectionType.NORMAL) || tube.isConnectionType(side, ConnectionType.PUSH);
     }
 
     @Override
     public boolean canInputFrom(Direction side) {
-        return false;
+        if (side == null) {
+            return false;
+        }
+        EssentiaTube tube = getTransmitter();
+        return tube.isConnectionType(side, ConnectionType.NORMAL) || tube.isConnectionType(side, ConnectionType.PULL);
     }
 
     @Override
