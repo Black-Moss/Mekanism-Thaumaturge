@@ -1,6 +1,7 @@
 package com.blackmoss.mekanismthaumaturge;
 
 import com.blackmoss.mekanismthaumaturge.data.ModBlockLootSubProvider;
+import com.blackmoss.mekanismthaumaturge.data.ModModelProvider;
 import com.blackmoss.mekanismthaumaturge.data.ModRecipeProvider;
 import com.blackmoss.mekanismthaumaturge.data.lang.EnUsProvider;
 import com.blackmoss.mekanismthaumaturge.data.lang.ZhCnProvider;
@@ -61,7 +62,7 @@ public class MekanismThaumaturge {
         event.createProvider(ModItemTagsProvider::new);
         event.createProvider(ModBlockTagsProvider::new);
 
-//        event.createProvider(ModModelProvider::new);
+        event.createProvider(ModModelProvider::new);
 
         event.createProvider((output, lookupProvider) -> new LootTableProvider(
                 output,

@@ -7,6 +7,7 @@ import com.blackmoss.mekanismthaumaturge.registry.MTBlockEntities;
 import com.leclowndu93150.thaumaturge.TTIds;
 import mekanism.client.gui.GuiUtils;
 import mekanism.client.render.MekanismRenderer;
+import mekanism.common.util.text.TextUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.Component;
@@ -76,7 +77,7 @@ public class MekanismThaumaturgeClient {
                         0xFF000000 | display.color());
             }
             graphics.text(Minecraft.getInstance().font,
-                    Component.translatable("gui.mekanismthaumaturge.essentia_amount", display.amount(), display.capacity()),
+                    Component.translatable("gui.mekanismthaumaturge.essentia_amount", TextUtils.format(display.amount())),
                     x + 3, y + 3, 0xFFFFFFFF, false);
         }
     }

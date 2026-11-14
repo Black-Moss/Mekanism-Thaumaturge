@@ -18,7 +18,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(LookingAtUtils.class)
 public class LookingAtUtilsMixin {
-
     @Inject(method = "addInfoOrRedirect", at = @At("TAIL"), remap = false)
     private static void mekanismthaumaturge$addEssentiaType(
             LookingAtHelper info,

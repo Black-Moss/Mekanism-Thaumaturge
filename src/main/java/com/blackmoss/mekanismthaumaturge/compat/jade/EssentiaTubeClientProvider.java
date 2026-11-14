@@ -4,9 +4,12 @@ import com.blackmoss.mekanismthaumaturge.MekanismThaumaturge;
 import com.blackmoss.mekanismthaumaturge.block.EssentiaTube;
 import com.blackmoss.mekanismthaumaturge.block.EssentiaTubeBlockEntity;
 import com.leclowndu93150.thaumaturge.api.aspect.IAspect;
+import mekanism.common.util.text.TextUtils;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import org.jspecify.annotations.NonNull;
@@ -46,16 +49,17 @@ public class EssentiaTubeClientProvider implements IBlockComponentProvider {
         }
         Component typeText;
         if (type.isEmpty()) {
-            typeText = Component.translatable("gui.mekanismthaumaturge.essentia_empty");
+            typeText = Component.translatable("gui.mekanismthaumaturge.essentia_empty").setStyle(Style.EMPTY.withColor(ChatFormatting.WHITE));
         } else {
             int colon = type.indexOf(':');
             String namespace = colon < 0 ? "thaumaturge" : type.substring(0, colon);
             String path = colon < 0 ? type : type.substring(colon + 1);
             typeText = Component.translatable("gui.mekanismthaumaturge.essentia",
-                    Component.translatable("aspect." + namespace + "." + path));
+                            Component.translatable("aspect." + namespace + "." + path))
+                    .setStyle(Style.EMPTY.withColor(ChatFormatting.WHITE));
         }
         tooltip.add(typeText);
-        Component localText = Component.translatable("gui.mekanismthaumaturge.essentia_local", local);
+        Component localText = Component.translatable("gui.mekanismthaumaturge.essentia_local", TextUtils.format(local));
         if (!inNetwork) {
             localText = localText.copy().append(Component.translatable("gui.mekanismthaumaturge.essentia_no_network"));
         }

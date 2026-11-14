@@ -15,6 +15,7 @@ public final class MTCreativeModeTabs {
                     .title(Component.translatable("itemGroup.mekanismthaumaturge"))
                     .icon(() -> MTBlocks.BASIC_ESSENTIA_TUBE.asItem().getDefaultInstance())
                     .displayItems((itemDisplayParameters, output) -> {
+                        output.accept(MTItems.THAUMSTEEL.get());
                         output.accept(MTBlocks.BASIC_ESSENTIA_TUBE.asItem());
                         output.accept(MTBlocks.ADVANCED_ESSENTIA_TUBE.asItem());
                         output.accept(MTBlocks.ELITE_ESSENTIA_TUBE.asItem());
