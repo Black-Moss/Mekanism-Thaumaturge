@@ -3,6 +3,7 @@ package com.blackmoss.mekanismthaumaturge.data;
 import com.blackmoss.mekanismthaumaturge.MekanismThaumaturge;
 import com.blackmoss.mekanismthaumaturge.registry.MTBlocks;
 import com.blackmoss.mekanismthaumaturge.registry.MTItemTags;
+import com.blackmoss.mekanismthaumaturge.registry.MTItems;
 import com.leclowndu93150.thaumaturge.TTIds;
 import com.leclowndu93150.thaumaturge.api.aspect.AspectInstance;
 import com.leclowndu93150.thaumaturge.api.aspect.IAspect;
@@ -13,11 +14,16 @@ import com.leclowndu93150.thaumaturge.data.recipe.builders.workbench.ArcaneWorkb
 import com.leclowndu93150.thaumaturge.data.recipe.builders.workbench.ArcaneWorkbenchShapelessRecipeBuilder;
 import com.leclowndu93150.thaumaturge.registry.TTDataComponents;
 import com.leclowndu93150.thaumaturge.registry.TTItems;
-import mekanism.client.recipe_viewer.jei.machine.MetallurgicInfuserRecipeCategory;
+import mekanism.api.MekanismAPI;
+import mekanism.api.MekanismAPITags;
+import mekanism.api.chemical.Chemical;
+import mekanism.api.datagen.recipe.builder.ItemStackChemicalToItemStackRecipeBuilder;
+import mekanism.api.recipes.ingredients.creator.IngredientCreatorAccess;
 import mekanism.common.tags.MekanismTags;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderSet;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -57,6 +63,7 @@ public final class ModRecipeProvider extends RecipeProvider {
     @Override
     protected void buildRecipes() {
         essentiaTube();
+        metallurgicInfusing(MTItems.THAUMSTEEL, TTItems.INGOT_THAUMIUM.get(), MekanismAPITags.Chemicals.CARBON, 10);
     }
 
     private void essentiaTube() {
@@ -88,6 +95,16 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .save(output);
     }
 
+    private void metallurgicInfusing(ItemLike result, ItemLike catalyst, TagKey<Chemical> chemicalTag, int amount) {
+        HolderGetter<Chemical> chemicals = registries.lookupOrThrow(MekanismAPI.CHEMICAL_REGISTRY_NAME);
+        ItemStackChemicalToItemStackRecipeBuilder.metallurgicInfusing(
+                IngredientCreatorAccess.item().from(catalyst),
+                IngredientCreatorAccess.chemicalStack().from(chemicals, chemicalTag, amount),
+                new ItemStackTemplate(result.asItem()),
+                false
+        ).save(output, MekanismThaumaturge.identifier(
+                "metallurgic_infusing/" + BuiltInRegistries.ITEM.getKey(result.asItem()).getPath()));
+    }
 
     private CrucibleRecipeBuilder crucible(ItemLike result, ItemLike catalyst) {
         return (CrucibleRecipeBuilder) new CrucibleRecipeBuilder(

@@ -3,7 +3,7 @@
   "crystals": [],
   "key": {
     "M": "thaumaturge:salis_mundus",
-    "S": "#c:fuels"
+    "S": "#c:ingots/thaumsteel"
   },
   "pattern": [
     "SMS"
