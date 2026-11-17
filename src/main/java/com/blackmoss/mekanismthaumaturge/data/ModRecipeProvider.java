@@ -5,15 +5,10 @@ import com.blackmoss.lazycat.recipe.mekanism.ItemStackChemicalToItemStackBuilder
 import com.blackmoss.lazycat.recipe.mekanism.ItemStackToChemicalBuilder;
 import com.blackmoss.lazycat.recipe.thaumaturge.ArcaneShapedBuilder;
 import com.blackmoss.mekanismthaumaturge.MekanismThaumaturge;
-import com.blackmoss.mekanismthaumaturge.registry.MTBlocks;
-import com.blackmoss.mekanismthaumaturge.registry.MTChemicals;
-import com.blackmoss.mekanismthaumaturge.registry.MTItemTags;
-import com.blackmoss.mekanismthaumaturge.registry.MTItems;
+import com.blackmoss.mekanismthaumaturge.registry.*;
 import com.leclowndu93150.thaumaturge.TTIds;
 import com.leclowndu93150.thaumaturge.api.recipe.ResearchGate;
-import com.leclowndu93150.thaumaturge.registry.TTItemTags;
 import com.leclowndu93150.thaumaturge.registry.TTItems;
-import mekanism.api.MekanismAPITags;
 import mekanism.common.tags.MekanismTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -51,8 +46,8 @@ public final class ModRecipeProvider extends LazyCatRecipeProvider {
 
         new ItemStackChemicalToItemStackBuilder(context,
                 MTItems.THAUMSTEEL, ItemStackChemicalToItemStackBuilder.Mode.METALLURGIC_INFUSING)
-                .chemical(MekanismAPITags.Chemicals.CARBON, 10)
-                .mainItem(TTItemTags.INGOTS_THAUMIUM)
+                .chemical(MTChemicalTags.MUNDUS, 10)
+                .mainItem(MekanismTags.Items.INGOTS_STEEL)
                 .save();
 
         new ItemStackToChemicalBuilder(context, ItemStackToChemicalBuilder.Mode.CHEMICAL_CONVERSION)
