@@ -6,12 +6,10 @@ import com.blackmoss.mekanismthaumaturge.data.ModRecipeProvider;
 import com.blackmoss.mekanismthaumaturge.data.lang.EnUsProvider;
 import com.blackmoss.mekanismthaumaturge.data.lang.ZhCnProvider;
 import com.blackmoss.mekanismthaumaturge.data.tag.ModBlockTagsProvider;
+import com.blackmoss.mekanismthaumaturge.data.tag.ModChemicalTagsProvider;
 import com.blackmoss.mekanismthaumaturge.data.tag.ModItemTagsProvider;
 import com.blackmoss.mekanismthaumaturge.network.PacketEssentiaNetworkSync;
-import com.blackmoss.mekanismthaumaturge.registry.MTBlockEntities;
-import com.blackmoss.mekanismthaumaturge.registry.MTBlocks;
-import com.blackmoss.mekanismthaumaturge.registry.MTCreativeModeTabs;
-import com.blackmoss.mekanismthaumaturge.registry.MTItems;
+import com.blackmoss.mekanismthaumaturge.registry.*;
 import com.leclowndu93150.thaumaturge.api.aspect.IAspect;
 import com.leclowndu93150.thaumaturge.data.worldgen.aspect.AspectBootstrap;
 import com.mojang.logging.LogUtils;
@@ -39,8 +37,10 @@ public class MekanismThaumaturge {
     public MekanismThaumaturge(IEventBus modEventBus, ModContainer modContainer) {
         MTBlockEntities.TILE_ENTITY_TYPES.register(modEventBus);
         MTBlocks.BLOCKS.register(modEventBus);
+        MTChemicals.CHEMICALS.register(modEventBus);
         MTCreativeModeTabs.CREATIVE_MODE_TABS.register(modEventBus);
         MTItems.ITEMS.register(modEventBus);
+
         modEventBus.addListener(PacketEssentiaNetworkSync::registerPayloads);
     }
 
@@ -60,6 +60,7 @@ public class MekanismThaumaturge {
         event.createProvider(ModRecipeProvider.Runner::new);
 
         event.createProvider(ModItemTagsProvider::new);
+        event.createProvider(ModChemicalTagsProvider::new);
         event.createProvider(ModBlockTagsProvider::new);
 
         event.createProvider(ModModelProvider::new);
