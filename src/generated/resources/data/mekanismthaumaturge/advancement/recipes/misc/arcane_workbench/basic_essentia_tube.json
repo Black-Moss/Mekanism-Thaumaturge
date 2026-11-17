@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "mekanismthaumaturge:basic_essentia_tube"
+            "items": "#c:ingots/thaumsteel"
           }
         ]
       },

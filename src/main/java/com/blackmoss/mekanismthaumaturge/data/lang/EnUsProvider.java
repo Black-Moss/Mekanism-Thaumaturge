@@ -1,19 +1,20 @@
 package com.blackmoss.mekanismthaumaturge.data.lang;
 
+import com.blackmoss.lazycat.lang.LazyCatLanguageProvider;
 import com.blackmoss.mekanismthaumaturge.MekanismThaumaturge;
 import com.blackmoss.mekanismthaumaturge.registry.MTBlocks;
+import com.blackmoss.mekanismthaumaturge.registry.MTCreativeModeTabs;
 import com.blackmoss.mekanismthaumaturge.registry.MTItems;
 import net.minecraft.data.PackOutput;
-import net.neoforged.neoforge.common.data.LanguageProvider;
 
-public class EnUsProvider extends LanguageProvider {
+public class EnUsProvider extends LazyCatLanguageProvider {
     public EnUsProvider(PackOutput output) {
         super(output, MekanismThaumaturge.MODID, "en_us");
     }
 
     @Override
     protected void addTranslations() {
-        add("itemGroup.mekanismthaumaturge", "Mekanism Thaumaturge");
+        addCreativeModeTab(MTCreativeModeTabs.MEKANISM_THAUMATURGE.get(), "Mekanism Thaumaturge");
         jade();
         gui();
 
@@ -27,6 +28,8 @@ public class EnUsProvider extends LanguageProvider {
         add("description.mekanismthaumaturge.essentia_tube", "Transports essentia between connected blocks.");
         add("transmission.mekanismthaumaturge.essentia", "Essentia");
         add("network.mekanismthaumaturge.essentia", "Essentia Network");
+
+        add("chemical.mekanismthaumaturge.mundus", "Mundus");
     }
 
     private void jade() {

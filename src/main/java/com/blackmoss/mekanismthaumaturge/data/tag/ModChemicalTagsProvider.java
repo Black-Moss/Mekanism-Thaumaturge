@@ -1,4 +1,4 @@
-﻿package com.blackmoss.mekanismthaumaturge.data.tag;
+package com.blackmoss.mekanismthaumaturge.data.tag;
 
 import com.blackmoss.mekanismthaumaturge.MekanismThaumaturge;
 import com.blackmoss.mekanismthaumaturge.registry.MTChemicalTags;

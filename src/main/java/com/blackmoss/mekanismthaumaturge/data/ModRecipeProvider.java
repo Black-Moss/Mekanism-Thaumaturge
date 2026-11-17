@@ -2,9 +2,11 @@ package com.blackmoss.mekanismthaumaturge.data;
 
 import com.blackmoss.lazycat.recipe.LazyCatRecipeProvider;
 import com.blackmoss.lazycat.recipe.mekanism.ItemStackChemicalToItemStackBuilder;
+import com.blackmoss.lazycat.recipe.mekanism.ItemStackToChemicalBuilder;
 import com.blackmoss.lazycat.recipe.thaumaturge.ArcaneShapedBuilder;
 import com.blackmoss.mekanismthaumaturge.MekanismThaumaturge;
 import com.blackmoss.mekanismthaumaturge.registry.MTBlocks;
+import com.blackmoss.mekanismthaumaturge.registry.MTChemicals;
 import com.blackmoss.mekanismthaumaturge.registry.MTItemTags;
 import com.blackmoss.mekanismthaumaturge.registry.MTItems;
 import com.leclowndu93150.thaumaturge.TTIds;
@@ -37,20 +39,30 @@ public final class ModRecipeProvider extends LazyCatRecipeProvider {
 
     @Override
     protected void addRecipes() {
-        new ArcaneShapedBuilder(context, MTBlocks.BASIC_ESSENTIA_TUBE, 5)
+        new ArcaneShapedBuilder(context, MTBlocks.BASIC_ESSENTIA_TUBE.asItem(), 5)
                 .pattern("SMS")
                 .define('S', MTItemTags.INGOTS_THAUMSTEEL)
                 .define('M', TTItems.SALIS_MUNDUS)
                 .count(8)
                 .save();
-        tube(MTBlocks.ADVANCED_ESSENTIA_TUBE, MTBlocks.BASIC_ESSENTIA_TUBE, MekanismTags.Items.ALLOYS_INFUSED);
-        tube(MTBlocks.ELITE_ESSENTIA_TUBE, MTBlocks.ADVANCED_ESSENTIA_TUBE, MekanismTags.Items.ALLOYS_REINFORCED);
-        tube(MTBlocks.ULTIMATE_ESSENTIA_TUBE, MTBlocks.ELITE_ESSENTIA_TUBE, MekanismTags.Items.ALLOYS_ATOMIC);
+        tube(MTBlocks.ADVANCED_ESSENTIA_TUBE.asItem(), MTBlocks.BASIC_ESSENTIA_TUBE.asItem(), MekanismTags.Items.ALLOYS_INFUSED);
+        tube(MTBlocks.ELITE_ESSENTIA_TUBE.asItem(), MTBlocks.ADVANCED_ESSENTIA_TUBE.asItem(), MekanismTags.Items.ALLOYS_REINFORCED);
+        tube(MTBlocks.ULTIMATE_ESSENTIA_TUBE.asItem(), MTBlocks.ELITE_ESSENTIA_TUBE.asItem(), MekanismTags.Items.ALLOYS_ATOMIC);
 
         new ItemStackChemicalToItemStackBuilder(context,
-                MTItems.THAUMSTEEL)
+                MTItems.THAUMSTEEL, ItemStackChemicalToItemStackBuilder.Mode.METALLURGIC_INFUSING)
                 .chemical(MekanismAPITags.Chemicals.CARBON, 10)
                 .mainItem(TTItemTags.INGOTS_THAUMIUM)
+                .save();
+
+        new ItemStackToChemicalBuilder(context, ItemStackToChemicalBuilder.Mode.CHEMICAL_CONVERSION)
+                .input(TTItems.SALIS_MUNDUS.asItem())
+                .output(MTChemicals.MUNDUS, 10)
+                .save();
+
+        new ItemStackToChemicalBuilder(context, ItemStackToChemicalBuilder.Mode.OXIDIZING)
+                .input(TTItems.SALIS_MUNDUS.asItem())
+                .output(MTChemicals.MUNDUS, 10)
                 .save();
     }
 

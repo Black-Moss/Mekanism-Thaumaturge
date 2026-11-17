@@ -1,4 +1,4 @@
-﻿package com.blackmoss.mekanismthaumaturge.registry;
+package com.blackmoss.mekanismthaumaturge.registry;
 
 import com.blackmoss.mekanismthaumaturge.MekanismThaumaturge;
 import mekanism.api.MekanismAPI;

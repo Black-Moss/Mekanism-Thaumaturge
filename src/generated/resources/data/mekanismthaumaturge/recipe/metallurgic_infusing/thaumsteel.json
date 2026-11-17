@@ -1,12 +1,12 @@
 {
   "type": "mekanism:metallurgic_infusing",
   "chemical_input": {
-    "amount": 40,
+    "amount": 10,
     "tag": "mekanism:carbon"
   },
   "item_input": {
     "count": 1,
-    "ingredient": "thaumaturge:ingot_thaumium"
+    "ingredient": "#c:ingots/thaumium"
   },
   "output": {
     "id": "mekanismthaumaturge:thaumsteel"

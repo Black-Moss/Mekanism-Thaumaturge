@@ -1,19 +1,20 @@
 package com.blackmoss.mekanismthaumaturge.data.lang;
 
+import com.blackmoss.lazycat.lang.LazyCatLanguageProvider;
 import com.blackmoss.mekanismthaumaturge.MekanismThaumaturge;
 import com.blackmoss.mekanismthaumaturge.registry.MTBlocks;
+import com.blackmoss.mekanismthaumaturge.registry.MTCreativeModeTabs;
 import com.blackmoss.mekanismthaumaturge.registry.MTItems;
 import net.minecraft.data.PackOutput;
-import net.neoforged.neoforge.common.data.LanguageProvider;
 
-public class ZhCnProvider extends LanguageProvider {
+public class ZhCnProvider extends LazyCatLanguageProvider {
     public ZhCnProvider(PackOutput output) {
         super(output, MekanismThaumaturge.MODID, "zh_cn");
     }
 
     @Override
     protected void addTranslations() {
-        add("itemGroup.mekanismthaumaturge", "通用神秘");
+        addCreativeModeTab(MTCreativeModeTabs.MEKANISM_THAUMATURGE.get(), "通用神秘");
         jade();
         gui();
 
@@ -27,6 +28,8 @@ public class ZhCnProvider extends LanguageProvider {
         add("description.mekanismthaumaturge.essentia_tube", "在相连的方块之间传输源质。");
         add("transmission.mekanismthaumaturge.essentia", "源质");
         add("network.mekanismthaumaturge.essentia", "源质网络");
+
+        add("chemical.mekanismthaumaturge.mundus", "世界盐");
     }
 
     private void jade() {
