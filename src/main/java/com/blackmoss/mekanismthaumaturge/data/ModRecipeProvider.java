@@ -1,5 +1,7 @@
 package com.blackmoss.mekanismthaumaturge.data;
 
+import com.blackmoss.lazycat.api.recipe.mekanism.ItemStackChemicalToItemStackType;
+import com.blackmoss.lazycat.api.recipe.mekanism.ItemStackToChemicalType;
 import com.blackmoss.lazycat.recipe.LazyCatRecipeProvider;
 import com.blackmoss.lazycat.recipe.mekanism.ItemStackChemicalToItemStackBuilder;
 import com.blackmoss.lazycat.recipe.mekanism.ItemStackToChemicalBuilder;
@@ -20,8 +22,8 @@ import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public final class ModRecipeProvider extends LazyCatRecipeProvider {
-    private ModRecipeProvider(HolderLookup.Provider provider, RecipeOutput output, String space) {
-        super(provider, output, space);
+    private ModRecipeProvider(HolderLookup.Provider provider, RecipeOutput output, String modid) {
+        super(provider, output, modid);
     }
 
     private static ResearchGate mtGate(String path) {
@@ -45,18 +47,18 @@ public final class ModRecipeProvider extends LazyCatRecipeProvider {
         tube(MTBlocks.ULTIMATE_ESSENTIA_TUBE.asItem(), MTBlocks.ELITE_ESSENTIA_TUBE.asItem(), MekanismTags.Items.ALLOYS_ATOMIC);
 
         new ItemStackChemicalToItemStackBuilder(context,
-                MTItems.THAUMSTEEL, ItemStackChemicalToItemStackBuilder.Mode.METALLURGIC_INFUSING)
+                MTItems.THAUMSTEEL, ItemStackChemicalToItemStackType.METALLURGIC_INFUSING)
                 .chemical(MTChemicalTags.MUNDUS, 10)
                 .mainItem(MekanismTags.Items.INGOTS_STEEL)
                 .save();
 
-        new ItemStackToChemicalBuilder(context, ItemStackToChemicalBuilder.Mode.CHEMICAL_CONVERSION)
-                .input(TTItems.SALIS_MUNDUS.asItem())
+        new ItemStackToChemicalBuilder(context, ItemStackToChemicalType.CHEMICAL_CONVERSION)
+                .input(TTItems.SALIS_MUNDUS)
                 .output(MTChemicals.MUNDUS, 10)
                 .save();
 
-        new ItemStackToChemicalBuilder(context, ItemStackToChemicalBuilder.Mode.OXIDIZING)
-                .input(TTItems.SALIS_MUNDUS.asItem())
+        new ItemStackToChemicalBuilder(context, ItemStackToChemicalType.OXIDIZING)
+                .input(TTItems.SALIS_MUNDUS)
                 .output(MTChemicals.MUNDUS, 10)
                 .save();
     }
