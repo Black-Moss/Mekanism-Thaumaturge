@@ -3,7 +3,6 @@ package com.blackmoss.mekanismthaumaturge.data.tag;
 import com.blackmoss.mekanismthaumaturge.MekanismThaumaturge;
 import com.blackmoss.mekanismthaumaturge.registry.MTItemTags;
 import com.blackmoss.mekanismthaumaturge.registry.MTItems;
-import mekanism.common.tags.MekanismTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.Tags;

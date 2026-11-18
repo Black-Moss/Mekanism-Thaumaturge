@@ -3,10 +3,10 @@
   "package": "com.blackmoss.mekanismthaumaturge.mixin",
   "compatibilityLevel": "JAVA_25",
   "mixins": [
+    "LookingAtUtilsMixin",
     "TileComponentConfigMixin",
     "TransmissionTypeMixin",
-    "TransmitterTypeMixin",
-    "LookingAtUtilsMixin"
+    "TransmitterTypeMixin"
   ],
   "client": [
     "client.GuiConfigTypeTabMixin",

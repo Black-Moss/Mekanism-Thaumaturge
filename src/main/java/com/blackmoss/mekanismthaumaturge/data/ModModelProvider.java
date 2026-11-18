@@ -27,13 +27,14 @@ import java.util.Optional;
 
 public class ModModelProvider extends LazyCatModelProvider {
     private static final Map<String, Boolean> TRANSMITTER_ITEM_PART_VISIBILITY = new HashMap<>();
-    private ModelContext context;
 
     static {
         for (String partGroup : TransmitterBlockStateModel.ALL_PART_GROUPS) {
             TRANSMITTER_ITEM_PART_VISIBILITY.put(partGroup, partGroup.contains(VisualConnectionStatus.NONE.partName()));
         }
     }
+
+    private ModelContext context;
 
     public ModModelProvider(PackOutput output) {
         super(output, MekanismThaumaturge.MODID);
