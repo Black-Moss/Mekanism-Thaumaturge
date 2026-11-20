@@ -2,6 +2,7 @@ package com.blackmoss.mekanismthaumaturge.data.lang;
 
 import com.blackmoss.lazycat.lang.LazyCatLanguageProvider;
 import com.blackmoss.mekanismthaumaturge.MekanismThaumaturge;
+import com.blackmoss.mekanismthaumaturge.registry.MTAspects;
 import com.blackmoss.mekanismthaumaturge.registry.MTBlocks;
 import com.blackmoss.mekanismthaumaturge.registry.MTCreativeModeTabs;
 import com.blackmoss.mekanismthaumaturge.registry.MTItems;
@@ -24,6 +25,11 @@ public class EnUsProvider extends LazyCatLanguageProvider {
         addBlock(MTBlocks.ULTIMATE_ESSENTIA_TUBE, "Ultimate Essentia Tube");
 
         addItem(MTItems.THAUMSTEEL, "Thaumsteel");
+
+        addAspect(MTAspects.ELECTRICA,
+                "Electrica",
+                "Electric, Energy, Electricity",
+                "Electricity thing");
 
         add("description.mekanismthaumaturge.essentia_tube", "Transports essentia between connected blocks.");
         add("transmission.mekanismthaumaturge.essentia", "Essentia");

@@ -1,0 +1,9 @@
+{
+  "color": 4124816,
+  "components": [
+    "thaumaturge:machina",
+    "thaumaturge:potentia"
+  ],
+  "tag": "electrica",
+  "texture": "mekanismthaumaturge:textures/aspects/electrica.png"
+}

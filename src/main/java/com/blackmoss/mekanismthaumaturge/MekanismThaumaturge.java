@@ -3,6 +3,7 @@ package com.blackmoss.mekanismthaumaturge;
 import com.blackmoss.mekanismthaumaturge.data.ModBlockLootSubProvider;
 import com.blackmoss.mekanismthaumaturge.data.ModModelProvider;
 import com.blackmoss.mekanismthaumaturge.data.ModRecipeProvider;
+import com.blackmoss.mekanismthaumaturge.data.datamap.ModDataMapProvider;
 import com.blackmoss.mekanismthaumaturge.data.lang.EnUsProvider;
 import com.blackmoss.mekanismthaumaturge.data.lang.ZhCnProvider;
 import com.blackmoss.mekanismthaumaturge.data.tag.ModBlockTagsProvider;
@@ -51,13 +52,17 @@ public class MekanismThaumaturge {
     @SubscribeEvent
     public static void onGatherData(GatherDataEvent.Client event) {
         RegistrySetBuilder registries = new RegistrySetBuilder()
-                .add(IAspect.REGISTRY_KEY, AspectBootstrap::bootstrap);
+                .add(IAspect.REGISTRY_KEY, ctx -> {
+                    AspectBootstrap.bootstrap(ctx);
+                    MTAspects.bootstrap(ctx);
+                });
         event.createDatapackRegistryObjects(registries);
 
         event.createProvider(EnUsProvider::new);
         event.createProvider(ZhCnProvider::new);
 
         event.createProvider(ModRecipeProvider.Runner::new);
+        event.createProvider(ModDataMapProvider::new);
 
         event.createProvider(ModItemTagsProvider::new);
         event.createProvider(ModChemicalTagsProvider::new);

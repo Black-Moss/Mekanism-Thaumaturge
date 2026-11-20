@@ -1,4 +1,7 @@
 {
+  "aspect.mekanismthaumaturge.electrica": "Electrica",
+  "aspect.mekanismthaumaturge.electrica.desc": "Electric, Energy, Electricity",
+  "aspect.mekanismthaumaturge.electrica.help": "Electricity thing",
   "block.mekanismthaumaturge.advanced_essentia_tube": "Advanced Essentia Tube",
   "block.mekanismthaumaturge.basic_essentia_tube": "Basic Essentia Tube",
   "block.mekanismthaumaturge.elite_essentia_tube": "Elite Essentia Tube",

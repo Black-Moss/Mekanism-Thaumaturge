@@ -1,4 +1,7 @@
 {
+  "aspect.mekanismthaumaturge.electrica": "电力",
+  "aspect.mekanismthaumaturge.electrica.desc": "电动，电能，电力",
+  "aspect.mekanismthaumaturge.electrica.help": "有电的东西",
   "block.mekanismthaumaturge.advanced_essentia_tube": "高级源质管道",
   "block.mekanismthaumaturge.basic_essentia_tube": "基础源质管道",
   "block.mekanismthaumaturge.elite_essentia_tube": "精英源质管道",

@@ -2,6 +2,7 @@ package com.blackmoss.mekanismthaumaturge.data.lang;
 
 import com.blackmoss.lazycat.lang.LazyCatLanguageProvider;
 import com.blackmoss.mekanismthaumaturge.MekanismThaumaturge;
+import com.blackmoss.mekanismthaumaturge.registry.MTAspects;
 import com.blackmoss.mekanismthaumaturge.registry.MTBlocks;
 import com.blackmoss.mekanismthaumaturge.registry.MTCreativeModeTabs;
 import com.blackmoss.mekanismthaumaturge.registry.MTItems;
@@ -24,6 +25,11 @@ public class ZhCnProvider extends LazyCatLanguageProvider {
         addBlock(MTBlocks.ULTIMATE_ESSENTIA_TUBE, "终极源质管道");
 
         addItem(MTItems.THAUMSTEEL, "神秘钢");
+
+        addAspect(MTAspects.ELECTRICA,
+                "电力",
+                "电动，电能，电力",
+                "有电的东西");
 
         add("description.mekanismthaumaturge.essentia_tube", "在相连的方块之间传输源质。");
         add("transmission.mekanismthaumaturge.essentia", "源质");
