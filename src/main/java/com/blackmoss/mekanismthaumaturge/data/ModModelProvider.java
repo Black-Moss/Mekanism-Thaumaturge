@@ -1,6 +1,5 @@
 package com.blackmoss.mekanismthaumaturge.data;
 
-import com.blackmoss.lazycat.api.model.ModelContext;
 import com.blackmoss.lazycat.model.LazyCatModelProvider;
 import com.blackmoss.mekanismthaumaturge.MekanismThaumaturge;
 import com.blackmoss.mekanismthaumaturge.registry.MTBlocks;
@@ -34,16 +33,12 @@ public class ModModelProvider extends LazyCatModelProvider {
         }
     }
 
-    private ModelContext context;
-
     public ModModelProvider(PackOutput output) {
         super(output, MekanismThaumaturge.MODID);
     }
 
     @Override
-    protected void addModels(ModelContext context) {
-        this.context = context;
-
+    protected void addModels() {
         itemFlat(MTItems.THAUMSTEEL.get());
         tubeBlock(MTBlocks.BASIC_ESSENTIA_TUBE, "basic");
         tubeBlock(MTBlocks.ADVANCED_ESSENTIA_TUBE, "advanced");
@@ -52,7 +47,7 @@ public class ModModelProvider extends LazyCatModelProvider {
     }
 
     private void tubeBlock(BlockRegistryObject<?, ?> registryObject, String tier) {
-        var blockModels = this.context.blockModels();
+        var blockModels = context.blockModels();
         Block block = registryObject.value();
         Identifier baseModelLocation = MekanismThaumaturge.identifier("block/transmitter/large/essentia_tube/" + tier);
         Variant baseModel = BlockModelGenerators.plainModel(baseModelLocation);
