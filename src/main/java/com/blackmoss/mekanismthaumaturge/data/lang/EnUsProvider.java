@@ -47,7 +47,7 @@ public class EnUsProvider extends LazyCatLanguageProvider {
         add("gui.mekanismthaumaturge.essentia_empty", "None");
         add("gui.mekanismthaumaturge.essentia_local", "Local buffer: %1$s");
         add("gui.mekanismthaumaturge.essentia_no_network", " (not in a network)");
-        add("gui.mekanismthaumaturge.essentia_amount", "%1$s");
+        add("gui.mekanismthaumaturge.essentia_amount", "%1$s: %2$s");
         add("gui.mekanismthaumaturge.essentia_narration", "Essentia");
     }
 }

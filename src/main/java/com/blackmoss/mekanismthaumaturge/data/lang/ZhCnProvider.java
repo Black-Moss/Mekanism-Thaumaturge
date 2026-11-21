@@ -47,7 +47,7 @@ public class ZhCnProvider extends LazyCatLanguageProvider {
         add("gui.mekanismthaumaturge.essentia_empty", "无");
         add("gui.mekanismthaumaturge.essentia_local", "本地缓存：%1$s");
         add("gui.mekanismthaumaturge.essentia_no_network", "（未接入网络）");
-        add("gui.mekanismthaumaturge.essentia_amount", "%1$s");
+        add("gui.mekanismthaumaturge.essentia_amount", "%1$s：%2$s");
         add("gui.mekanismthaumaturge.essentia_narration", "源质");
     }
 }

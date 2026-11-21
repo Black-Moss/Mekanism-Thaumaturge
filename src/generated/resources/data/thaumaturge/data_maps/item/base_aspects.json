@@ -2,7 +2,7 @@
   "values": {
     "mekanism:energy_tablet": [
       {
-        "amount": 3,
+        "amount": 5,
         "aspect": "mekanismthaumaturge:electrica"
       }
     ]

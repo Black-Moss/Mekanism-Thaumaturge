@@ -8,9 +8,11 @@ import com.leclowndu93150.thaumaturge.TTIds;
 import mekanism.client.gui.GuiUtils;
 import mekanism.client.render.MekanismRenderer;
 import mekanism.common.util.text.TextUtils;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
 import net.minecraft.resources.Identifier;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -47,9 +49,11 @@ public class MekanismThaumaturgeClient {
         @Override
         public @Nullable Component getNarration() {
             if (display.typeName().isEmpty()) {
-                return Component.translatable("gui.mekanismthaumaturge.essentia_narration");
+                return Component.translatable("gui.mekanismthaumaturge.essentia_narration")
+                        .setStyle(Style.EMPTY.withColor(ChatFormatting.WHITE));
             }
-            return Component.translatable("gui.mekanismthaumaturge.essentia", display.typeName());
+            return Component.translatable("gui.mekanismthaumaturge.essentia", display.typeName())
+                    .setStyle(Style.EMPTY.withColor(ChatFormatting.WHITE));
         }
 
         @Override
@@ -77,7 +81,7 @@ public class MekanismThaumaturgeClient {
                         0xFF000000 | display.color());
             }
             graphics.text(Minecraft.getInstance().font,
-                    Component.translatable("gui.mekanismthaumaturge.essentia_amount", TextUtils.format(display.amount())),
+                    Component.translatable("gui.mekanismthaumaturge.essentia_amount", display.typeName(), TextUtils.format(display.amount())),
                     x + 3, y + 3, 0xFFFFFFFF, false);
         }
     }

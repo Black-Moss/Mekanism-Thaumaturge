@@ -10,7 +10,7 @@
   "config.jade.plugin_mekanismthaumaturge.essentia_tube": "Essentia Tube",
   "description.mekanismthaumaturge.essentia_tube": "Transports essentia between connected blocks.",
   "gui.mekanismthaumaturge.essentia": "Essentia: %1$s",
-  "gui.mekanismthaumaturge.essentia_amount": "%1$s",
+  "gui.mekanismthaumaturge.essentia_amount": "%1$s: %2$s",
   "gui.mekanismthaumaturge.essentia_empty": "None",
   "gui.mekanismthaumaturge.essentia_local": "Local buffer: %1$s",
   "gui.mekanismthaumaturge.essentia_narration": "Essentia",

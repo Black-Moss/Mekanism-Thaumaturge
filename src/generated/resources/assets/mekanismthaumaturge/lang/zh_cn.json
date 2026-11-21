@@ -10,7 +10,7 @@
   "config.jade.plugin_mekanismthaumaturge.essentia_tube": "源质管道",
   "description.mekanismthaumaturge.essentia_tube": "在相连的方块之间传输源质。",
   "gui.mekanismthaumaturge.essentia": "源质：%1$s",
-  "gui.mekanismthaumaturge.essentia_amount": "%1$s",
+  "gui.mekanismthaumaturge.essentia_amount": "%1$s：%2$s",
   "gui.mekanismthaumaturge.essentia_empty": "无",
   "gui.mekanismthaumaturge.essentia_local": "本地缓存：%1$s",
   "gui.mekanismthaumaturge.essentia_narration": "源质",

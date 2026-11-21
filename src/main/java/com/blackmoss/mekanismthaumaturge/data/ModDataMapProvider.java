@@ -7,8 +7,6 @@ import com.blackmoss.mekanismthaumaturge.registry.MTAspects;
 import mekanism.common.registries.MekanismItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.neoforged.neoforge.common.data.DataMapProvider;
-import org.jspecify.annotations.NonNull;
 
 import java.util.concurrent.CompletableFuture;
 
