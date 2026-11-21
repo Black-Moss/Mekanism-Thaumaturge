@@ -35,6 +35,7 @@ public final class ModDataMapProvider extends LazyCatDataMapProvider {
         new ChemicalAspectDataMapBuilder(context, MTChemicals.MUNDUS.getKey())
                 .volume(10)
                 .aspect(TTAspects.PRAECANTATIO, 5)
+                .aspect(TTAspects.POTENTIA, 5)
                 .save();
     }
 }
