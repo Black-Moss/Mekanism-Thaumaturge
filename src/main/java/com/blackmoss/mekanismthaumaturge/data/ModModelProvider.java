@@ -47,7 +47,6 @@ public class ModModelProvider extends LazyCatModelProvider {
     }
 
     private void tubeBlock(BlockRegistryObject<?, ?> registryObject, String tier) {
-        var blockModels = context.blockModels();
         Block block = registryObject.value();
         Identifier baseModelLocation = MekanismThaumaturge.identifier("block/transmitter/large/essentia_tube/" + tier);
         Variant baseModel = BlockModelGenerators.plainModel(baseModelLocation);
