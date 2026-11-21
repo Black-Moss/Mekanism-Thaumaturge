@@ -1,0 +1,13 @@
+{
+  "values": {
+    "mekanismthaumaturge:mundus": {
+      "aspects": [
+        {
+          "amount": 5,
+          "aspect": "thaumaturge:praecantatio"
+        }
+      ],
+      "volume": 10
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "values": {
+    "minecraft:water": {
+      "aspects": [
+        {
+          "aspect": "thaumaturge:aqua"
+        }
+      ],
+      "volume": 100
+    }
+  }
+}
