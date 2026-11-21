@@ -3,7 +3,7 @@ package com.blackmoss.mekanismthaumaturge;
 import com.blackmoss.mekanismthaumaturge.data.ModBlockLootSubProvider;
 import com.blackmoss.mekanismthaumaturge.data.ModModelProvider;
 import com.blackmoss.mekanismthaumaturge.data.ModRecipeProvider;
-import com.blackmoss.mekanismthaumaturge.data.datamap.ModDataMapProvider;
+import com.blackmoss.mekanismthaumaturge.data.ModDataMapProvider;
 import com.blackmoss.mekanismthaumaturge.data.lang.EnUsProvider;
 import com.blackmoss.mekanismthaumaturge.data.lang.ZhCnProvider;
 import com.blackmoss.mekanismthaumaturge.data.tag.ModBlockTagsProvider;

@@ -1,0 +1,10 @@
+{
+  "values": {
+    "mekanism:energy_tablet": [
+      {
+        "amount": 3,
+        "aspect": "mekanismthaumaturge:electrica"
+      }
+    ]
+  }
+}

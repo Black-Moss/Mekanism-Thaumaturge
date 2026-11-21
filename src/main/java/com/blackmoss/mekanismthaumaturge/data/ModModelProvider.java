@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-public class ModModelProvider extends LazyCatModelProvider {
+public final class ModModelProvider extends LazyCatModelProvider {
     private static final Map<String, Boolean> TRANSMITTER_ITEM_PART_VISIBILITY = new HashMap<>();
 
     static {
