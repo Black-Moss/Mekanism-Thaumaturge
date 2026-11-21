@@ -2,6 +2,7 @@ package com.blackmoss.mekanismthaumaturge.mixin.client;
 
 import com.blackmoss.mekanismthaumaturge.client.MekanismThaumaturgeClient;
 import com.blackmoss.mekanismthaumaturge.compat.jade.EssentiaTubeDataProvider;
+import com.leclowndu93150.thaumaturge.api.items.GogglesAccess;
 import mekanism.common.integration.lookingat.jade.JadeTooltipRenderer;
 import net.minecraft.nbt.Tag;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,6 +21,9 @@ public class JadeTooltipRendererMixin {
             Accessor<?> accessor,
             IPluginConfig config,
             CallbackInfo ci) {
+        if (!GogglesAccess.wearsRevealingGear(accessor.getPlayer())) {
+            return;
+        }
         Tag tag = accessor.getServerData().get(EssentiaTubeDataProvider.KEY_DISPLAY);
         if (tag == null) {
             return;

@@ -18,6 +18,7 @@ public class ZhCnProvider extends LazyCatLanguageProvider {
         addCreativeModeTab(MTCreativeModeTabs.MEKANISM_THAUMATURGE.get(), "通用神秘");
         jade();
         gui();
+        configuration();
 
         addBlock(MTBlocks.BASIC_ESSENTIA_TUBE, "基础源质管道");
         addBlock(MTBlocks.ADVANCED_ESSENTIA_TUBE, "高级源质管道");
@@ -49,5 +50,10 @@ public class ZhCnProvider extends LazyCatLanguageProvider {
         add("gui.mekanismthaumaturge.essentia_no_network", "（未接入网络）");
         add("gui.mekanismthaumaturge.essentia_amount", "%1$s：%2$s");
         add("gui.mekanismthaumaturge.essentia_narration", "源质");
+    }
+
+    private void configuration() {
+        addConfiguration("replace_essentia_display_format", "替换源质显示样式");
+        addConfiguration("replace_essentia_display_format.tooltip", "将Thaumaturge自身的源质显示替换成通用神秘的样式");
     }
 }

@@ -10,7 +10,8 @@
   ],
   "client": [
     "client.GuiConfigTypeTabMixin",
-    "client.JadeTooltipRendererMixin"
+    "client.JadeTooltipRendererMixin",
+    "client.BlockDetailsComponentProviderMixin"
   ],
   "injectors": {
     "defaultRequire": 1

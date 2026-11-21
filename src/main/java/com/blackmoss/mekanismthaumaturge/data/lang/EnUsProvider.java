@@ -18,6 +18,7 @@ public class EnUsProvider extends LazyCatLanguageProvider {
         addCreativeModeTab(MTCreativeModeTabs.MEKANISM_THAUMATURGE.get(), "Mekanism Thaumaturge");
         jade();
         gui();
+        configuration();
 
         addBlock(MTBlocks.BASIC_ESSENTIA_TUBE, "Basic Essentia Tube");
         addBlock(MTBlocks.ADVANCED_ESSENTIA_TUBE, "Advanced Essentia Tube");
@@ -49,5 +50,10 @@ public class EnUsProvider extends LazyCatLanguageProvider {
         add("gui.mekanismthaumaturge.essentia_no_network", " (not in a network)");
         add("gui.mekanismthaumaturge.essentia_amount", "%1$s: %2$s");
         add("gui.mekanismthaumaturge.essentia_narration", "Essentia");
+    }
+
+    private void configuration() {
+        addConfiguration("replace_essentia_display_format", "Replace Essentia Display Format");
+        addConfiguration("replace_essentia_display_format.tooltip", "When true, Replace Thaumaturge's own essentia display with a Mekanism Thaumaturge style");
     }
 }

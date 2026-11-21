@@ -1,5 +1,6 @@
 package com.blackmoss.mekanismthaumaturge;
 
+import com.blackmoss.mekanismthaumaturge.config.MekanismThaumaturgeClientConfig;
 import com.blackmoss.mekanismthaumaturge.data.ModBlockLootSubProvider;
 import com.blackmoss.mekanismthaumaturge.data.ModModelProvider;
 import com.blackmoss.mekanismthaumaturge.data.ModRecipeProvider;
@@ -23,6 +24,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import org.slf4j.Logger;
 
@@ -43,6 +45,8 @@ public class MekanismThaumaturge {
         MTItems.ITEMS.register(modEventBus);
 
         modEventBus.addListener(PacketEssentiaNetworkSync::registerPayloads);
+
+        modContainer.registerConfig(ModConfig.Type.CLIENT, MekanismThaumaturgeClientConfig.SPEC);
     }
 
     public static Identifier identifier(String path) {

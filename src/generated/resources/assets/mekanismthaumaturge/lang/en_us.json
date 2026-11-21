@@ -17,6 +17,8 @@
   "gui.mekanismthaumaturge.essentia_no_network": " (not in a network)",
   "item.mekanismthaumaturge.thaumsteel": "Thaumsteel",
   "itemGroup.mekanismthaumaturge.mekanismthaumaturge": "Mekanism Thaumaturge",
+  "mekanismthaumaturge.configuration.replace_essentia_display_format": "Replace Essentia Display Format",
+  "mekanismthaumaturge.configuration.replace_essentia_display_format.tooltip": "When true, Replace Thaumaturge's own essentia display with a Mekanism Thaumaturge style",
   "network.mekanismthaumaturge.essentia": "Essentia Network",
   "transmission.mekanismthaumaturge.essentia": "Essentia"
 }

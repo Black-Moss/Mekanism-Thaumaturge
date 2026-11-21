@@ -25,6 +25,7 @@ import net.minecraft.core.Direction.Axis;
 import net.minecraft.core.Direction.AxisDirection;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.Identifier;
+import net.minecraft.util.LightCoordsUtil;
 import net.minecraft.world.phys.Vec3;
 import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
@@ -70,13 +71,14 @@ public class EssentiaTubeRender extends RenderTransmitterBase<EssentiaTubeBlockE
         if (amount <= 0) {
             return;
         }
-        float scale;
-        if (transmitter.hasTransmitterNetwork()) {
-            scale = Math.clamp(transmitter.getTransmitterNetworkNN().currentScale, 0F, 1F);
-        } else {
+        float scale = transmitter.hasTransmitterNetwork()
+                ? transmitter.getTransmitterNetworkNN().currentScale
+                : -1F;
+        if (scale <= 0F) {
             float rawScale = (float) amount / (float) capacity;
-            scale = Math.clamp(Math.max((float) Math.cbrt(rawScale), 0.3F), 0F, 1F);
+            scale = Math.max((float) Math.cbrt(rawScale), 0.3F);
         }
+        scale = Math.clamp(scale, 0F, 1F);
         state.currentScale = scale;
         TextureAtlasSprite glowSprite;
         glowSprite = MekanismRenderer.getSprite(GLOW_TEXTURE);
@@ -84,7 +86,7 @@ public class EssentiaTubeRender extends RenderTransmitterBase<EssentiaTubeBlockE
         int color = type.value().color();
         state.fluidTint = 0xFF000000 | color;
         state.stage = Math.clamp(Math.max(3, (int) (scale * (STAGES - 1))), 3, STAGES - 1);
-        state.glow = state.lightCoords;
+        state.glow = LightCoordsUtil.FULL_BRIGHT;
 
         List<String> connectionContents = new ArrayList<>();
         boolean[] renderSides = new boolean[6];

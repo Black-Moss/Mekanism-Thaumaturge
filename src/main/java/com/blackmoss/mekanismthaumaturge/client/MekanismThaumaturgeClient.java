@@ -16,8 +16,12 @@ import net.minecraft.network.chat.Style;
 import net.minecraft.resources.Identifier;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.gui.ConfigurationScreen;
+import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import org.jspecify.annotations.Nullable;
 import snownee.jade.api.ui.Element;
 
@@ -33,6 +37,14 @@ public class MekanismThaumaturgeClient {
         event.registerBlockEntityRenderer(MTBlockEntities.ULTIMATE_ESSENTIA_TUBE.get(), EssentiaTubeRender::new);
     }
 
+    @SubscribeEvent
+    public static void onClientSetup(FMLClientSetupEvent event) {
+        ModList.get()
+                .getModContainerById(MekanismThaumaturge.MODID)
+                .ifPresent(container ->
+                        container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new));
+    }
+
     public static class EssentiaElement extends Element {
         private static final int WIDTH = 100;
         private static final int HEIGHT = 13;
@@ -46,13 +58,21 @@ public class MekanismThaumaturgeClient {
             return new EssentiaElement(display).size(WIDTH, HEIGHT);
         }
 
+        private Component typeComponent() {
+            String type = display.typeName();
+            int colon = type.indexOf(':');
+            String namespace = colon < 0 ? "thaumaturge" : type.substring(0, colon);
+            String path = colon < 0 ? type : type.substring(colon + 1);
+            return Component.translatable("aspect." + namespace + "." + path);
+        }
+
         @Override
         public @Nullable Component getNarration() {
             if (display.typeName().isEmpty()) {
                 return Component.translatable("gui.mekanismthaumaturge.essentia_narration")
                         .setStyle(Style.EMPTY.withColor(ChatFormatting.WHITE));
             }
-            return Component.translatable("gui.mekanismthaumaturge.essentia", display.typeName())
+            return Component.translatable("gui.mekanismthaumaturge.essentia", typeComponent())
                     .setStyle(Style.EMPTY.withColor(ChatFormatting.WHITE));
         }
 
@@ -81,7 +101,7 @@ public class MekanismThaumaturgeClient {
                         0xFF000000 | display.color());
             }
             graphics.text(Minecraft.getInstance().font,
-                    Component.translatable("gui.mekanismthaumaturge.essentia_amount", display.typeName(), TextUtils.format(display.amount())),
+                    Component.translatable("gui.mekanismthaumaturge.essentia_amount", typeComponent(), TextUtils.format(display.amount())),
                     x + 3, y + 3, 0xFFFFFFFF, false);
         }
     }

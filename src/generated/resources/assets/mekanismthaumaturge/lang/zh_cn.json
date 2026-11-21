@@ -17,6 +17,8 @@
   "gui.mekanismthaumaturge.essentia_no_network": "（未接入网络）",
   "item.mekanismthaumaturge.thaumsteel": "神秘钢",
   "itemGroup.mekanismthaumaturge.mekanismthaumaturge": "通用神秘",
+  "mekanismthaumaturge.configuration.replace_essentia_display_format": "替换源质显示样式",
+  "mekanismthaumaturge.configuration.replace_essentia_display_format.tooltip": "将Thaumaturge自身的源质显示替换成通用神秘的样式",
   "network.mekanismthaumaturge.essentia": "源质网络",
   "transmission.mekanismthaumaturge.essentia": "源质"
 }
