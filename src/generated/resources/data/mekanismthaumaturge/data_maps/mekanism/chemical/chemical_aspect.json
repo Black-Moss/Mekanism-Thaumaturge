@@ -1,13 +1,83 @@
 {
   "values": {
+    "mekanism:bio": {
+      "aspects": [
+        {
+          "amount": 10,
+          "aspect": "thaumaturge:herba"
+        }
+      ],
+      "volume": 5
+    },
+    "mekanism:carbon": {
+      "aspects": [
+        {
+          "amount": 10,
+          "aspect": "thaumaturge:potentia"
+        },
+        {
+          "amount": 10,
+          "aspect": "thaumaturge:ignis"
+        }
+      ],
+      "volume": 10
+    },
+    "mekanism:diamond": {
+      "aspects": [
+        {
+          "amount": 15,
+          "aspect": "thaumaturge:vitreus"
+        },
+        {
+          "amount": 15,
+          "aspect": "thaumaturge:desiderium"
+        }
+      ],
+      "volume": 10
+    },
+    "mekanism:fungi": {
+      "aspects": [
+        {
+          "amount": 10,
+          "aspect": "thaumaturge:herba"
+        },
+        {
+          "amount": 3,
+          "aspect": "thaumaturge:tenebrae"
+        }
+      ],
+      "volume": 10
+    },
+    "mekanism:gold": {
+      "aspects": [
+        {
+          "amount": 10,
+          "aspect": "thaumaturge:metallum"
+        },
+        {
+          "amount": 10,
+          "aspect": "thaumaturge:desiderium"
+        }
+      ],
+      "volume": 10
+    },
+    "mekanism:redstone": {
+      "aspects": [
+        {
+          "amount": 10,
+          "aspect": "thaumaturge:potentia"
+        }
+      ],
+      "volume": 10
+    },
     "mekanismthaumaturge:mundus": {
       "aspects": [
         {
-          "amount": 5,
+          "amount": 10,
           "aspect": "thaumaturge:praecantatio"
         },
         {
-          "amount": 5,
+          "amount": 10,
           "aspect": "thaumaturge:potentia"
         }
       ],

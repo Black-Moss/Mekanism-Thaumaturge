@@ -8,6 +8,7 @@ import com.blackmoss.mekanismthaumaturge.MekanismThaumaturge;
 import com.blackmoss.mekanismthaumaturge.registry.MTAspects;
 import com.blackmoss.mekanismthaumaturge.registry.MTChemicals;
 import com.leclowndu93150.thaumaturge.api.aspect.TTAspects;
+import mekanism.common.registries.MekanismChemicals;
 import mekanism.common.registries.MekanismItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -33,9 +34,37 @@ public final class ModDataMapProvider extends LazyCatDataMapProvider {
                 .save();
 
         new ChemicalAspectDataMapBuilder(context, MTChemicals.MUNDUS.getKey())
-                .volume(10)
                 .aspect(TTAspects.PRAECANTATIO, 5)
                 .aspect(TTAspects.POTENTIA, 5)
+                .save();
+
+        new ChemicalAspectDataMapBuilder(context, MekanismChemicals.REDSTONE.getKey())
+                .aspect(TTAspects.POTENTIA)
+                .save();
+
+        new ChemicalAspectDataMapBuilder(context, MekanismChemicals.DIAMOND.getKey())
+                .aspect(TTAspects.VITREUS, 15)
+                .aspect(TTAspects.DESIDERIUM, 15)
+                .save();
+
+        new ChemicalAspectDataMapBuilder(context, MekanismChemicals.CARBON.getKey())
+                .aspect(TTAspects.POTENTIA)
+                .aspect(TTAspects.IGNIS)
+                .save();
+
+        new ChemicalAspectDataMapBuilder(context, MekanismChemicals.GOLD.getKey())
+                .aspect(TTAspects.METALLUM)
+                .aspect(TTAspects.DESIDERIUM)
+                .save();
+
+        new ChemicalAspectDataMapBuilder(context, MekanismChemicals.BIO.getKey())
+                .volume(5)
+                .aspect(TTAspects.HERBA)
+                .save();
+
+        new ChemicalAspectDataMapBuilder(context, MekanismChemicals.FUNGI.getKey())
+                .aspect(TTAspects.HERBA)
+                .aspect(TTAspects.TENEBRAE, 3)
                 .save();
     }
 }

@@ -19,7 +19,7 @@ import java.util.function.BiConsumer;
 
 @SuppressWarnings("unused")
 public final class ChemicalAspectDataMapBuilder extends AbstractDataMapBuilder<Chemical, AspectRatio> {
-    private int volume = 100;
+    private int volume = 10;
     private AspectList aspects = AspectList.EMPTY;
 
     public ChemicalAspectDataMapBuilder(DataMapContext context, ResourceKey<Chemical> key) {
@@ -52,7 +52,7 @@ public final class ChemicalAspectDataMapBuilder extends AbstractDataMapBuilder<C
     }
 
     public ChemicalAspectDataMapBuilder aspect(ResourceKey<IAspect> aspect) {
-        return aspect(aspect, 1);
+        return aspect(aspect, 10);
     }
 
     public ChemicalAspectDataMapBuilder aspect(ResourceKey<IAspect> aspect, int amount) {
