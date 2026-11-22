@@ -6,6 +6,7 @@
   "block.mekanismthaumaturge.basic_essentia_tube": "基础源质管道",
   "block.mekanismthaumaturge.elite_essentia_tube": "精英源质管道",
   "block.mekanismthaumaturge.ultimate_essentia_tube": "终极源质管道",
+  "capacity.mekanismthaumaturge.essentia": "容量：%1$s",
   "chemical.mekanismthaumaturge.mundus": "世界盐",
   "config.jade.plugin_mekanismthaumaturge.essentia_tube": "源质管道",
   "description.mekanismthaumaturge.essentia_tube": "一种利用传输网络来传输源质的简单办法。",
@@ -20,6 +21,7 @@
   "mekanismthaumaturge.configuration.replace_essentia_display_format": "替换源质显示样式",
   "mekanismthaumaturge.configuration.replace_essentia_display_format.tooltip": "将Thaumaturge自身的源质显示替换成通用神秘的样式",
   "network.mekanismthaumaturge.essentia": "源质网络",
+  "transfer_rate.mekanismthaumaturge.essentia": "传输速率：%1$s/t",
   "transmission.mekanismthaumaturge.essentia": "源质",
   "transmitter.mekanismthaumaturge.essentia": "- 源质（%1$s）"
 }

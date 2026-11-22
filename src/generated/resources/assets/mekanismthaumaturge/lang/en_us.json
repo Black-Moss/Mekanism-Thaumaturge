@@ -6,6 +6,7 @@
   "block.mekanismthaumaturge.basic_essentia_tube": "Basic Essentia Tube",
   "block.mekanismthaumaturge.elite_essentia_tube": "Elite Essentia Tube",
   "block.mekanismthaumaturge.ultimate_essentia_tube": "Ultimate Essentia Tube",
+  "capacity.mekanismthaumaturge.essentia": "Capacity: %1$s",
   "chemical.mekanismthaumaturge.mundus": "Mundus",
   "config.jade.plugin_mekanismthaumaturge.essentia_tube": "Essentia Tube",
   "description.mekanismthaumaturge.essentia_tube": "A simple way of distributing essentia throughout a transmitter network.",
@@ -20,6 +21,7 @@
   "mekanismthaumaturge.configuration.replace_essentia_display_format": "Replace Essentia Display Format",
   "mekanismthaumaturge.configuration.replace_essentia_display_format.tooltip": "When true, Replace Thaumaturge's own essentia display with a Mekanism Thaumaturge style",
   "network.mekanismthaumaturge.essentia": "Essentia Network",
+  "transfer_rate.mekanismthaumaturge.essentia": "Transfer Rate: %1$s/t",
   "transmission.mekanismthaumaturge.essentia": "Essentia",
   "transmitter.mekanismthaumaturge.essentia": "- Essentia (%1$s)"
 }

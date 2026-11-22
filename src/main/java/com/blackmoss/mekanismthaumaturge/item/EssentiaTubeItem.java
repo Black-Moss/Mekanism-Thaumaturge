@@ -36,9 +36,9 @@ public class EssentiaTubeItem extends ItemBlockTooltip<BlockLargeTransmitter<Ess
             @NonNull Consumer<Component> tooltipAdder,
             @NonNull TooltipFlag flag) {
         super.addStats(stack, itemAccess, context, tooltipDisplay, tooltipAdder, flag);
-        tooltipAdder.accept(MekanismLang.CAPACITY_MB_PER_TICK.translateColored(
+        tooltipAdder.accept(MekanismThaumaturgeLang.TRANSMITTER_CAPACITY.translateColored(
                 EnumColor.INDIGO, EnumColor.GRAY, TextUtils.format(capacity())));
-        tooltipAdder.accept(MekanismLang.PUMP_RATE_MB.translateColored(
+        tooltipAdder.accept(MekanismThaumaturgeLang.TRANSMITTER_TRANSFER_RATE.translateColored(
                 EnumColor.INDIGO, EnumColor.GRAY, TextUtils.format(transferRate())));
     }
 

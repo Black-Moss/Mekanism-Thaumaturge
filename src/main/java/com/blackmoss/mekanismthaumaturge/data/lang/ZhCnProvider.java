@@ -35,6 +35,8 @@ public class ZhCnProvider extends LazyCatLanguageProvider {
         add("description.mekanismthaumaturge.essentia_tube", "一种利用传输网络来传输源质的简单办法。");
         add("transmission.mekanismthaumaturge.essentia", "源质");
         add("transmitter.mekanismthaumaturge.essentia", "- 源质（%1$s）");
+        add("capacity.mekanismthaumaturge.essentia", "容量：%1$s");
+        add("transfer_rate.mekanismthaumaturge.essentia", "传输速率：%1$s/t");
         add("network.mekanismthaumaturge.essentia", "源质网络");
 
         add("chemical.mekanismthaumaturge.mundus", "世界盐");
