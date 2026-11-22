@@ -1,10 +1,11 @@
 package com.blackmoss.mekanismthaumaturge;
 
+import com.blackmoss.mekanismthaumaturge.common.contributor.MTAspectContributor;
 import com.blackmoss.mekanismthaumaturge.config.MekanismThaumaturgeClientConfig;
 import com.blackmoss.mekanismthaumaturge.data.ModBlockLootSubProvider;
+import com.blackmoss.mekanismthaumaturge.data.ModDataMapProvider;
 import com.blackmoss.mekanismthaumaturge.data.ModModelProvider;
 import com.blackmoss.mekanismthaumaturge.data.ModRecipeProvider;
-import com.blackmoss.mekanismthaumaturge.data.ModDataMapProvider;
 import com.blackmoss.mekanismthaumaturge.data.lang.EnUsProvider;
 import com.blackmoss.mekanismthaumaturge.data.lang.ZhCnProvider;
 import com.blackmoss.mekanismthaumaturge.data.tag.ModBlockTagsProvider;
@@ -13,6 +14,7 @@ import com.blackmoss.mekanismthaumaturge.data.tag.ModItemTagsProvider;
 import com.blackmoss.mekanismthaumaturge.network.PacketEssentiaNetworkSync;
 import com.blackmoss.mekanismthaumaturge.registry.*;
 import com.leclowndu93150.thaumaturge.api.aspect.IAspect;
+import com.leclowndu93150.thaumaturge.api.aspect.RegisterAspectContributorsEvent;
 import com.leclowndu93150.thaumaturge.data.worldgen.aspect.AspectBootstrap;
 import com.mojang.logging.LogUtils;
 import net.minecraft.core.RegistrySetBuilder;
@@ -20,9 +22,7 @@ import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
-import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
@@ -31,7 +31,6 @@ import org.slf4j.Logger;
 import java.util.List;
 import java.util.Set;
 
-@EventBusSubscriber(modid = MekanismThaumaturge.MODID)
 @Mod(MekanismThaumaturge.MODID)
 public class MekanismThaumaturge {
     public static final String MODID = "mekanismthaumaturge";
@@ -45,6 +44,8 @@ public class MekanismThaumaturge {
         MTItems.ITEMS.register(modEventBus);
 
         modEventBus.addListener(PacketEssentiaNetworkSync::registerPayloads);
+        modEventBus.addListener(MekanismThaumaturge::onRegisterAspectContributors);
+        modEventBus.addListener(MekanismThaumaturge::onGatherData);
 
         modContainer.registerConfig(ModConfig.Type.CLIENT, MekanismThaumaturgeClientConfig.SPEC);
     }
@@ -53,7 +54,10 @@ public class MekanismThaumaturge {
         return Identifier.fromNamespaceAndPath(MODID, path);
     }
 
-    @SubscribeEvent
+    public static void onRegisterAspectContributors(RegisterAspectContributorsEvent event) {
+        event.register(new MTAspectContributor());
+    }
+
     public static void onGatherData(GatherDataEvent.Client event) {
         RegistrySetBuilder registries = new RegistrySetBuilder()
                 .add(IAspect.REGISTRY_KEY, ctx -> {

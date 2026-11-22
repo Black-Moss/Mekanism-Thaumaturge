@@ -22,6 +22,7 @@ public final class EssentiaJadeFormat {
 
     private static final String FIELD_SUMMARY = "summary";
     private static final String FIELD_DETAILS = "details";
+    private static final Style WHITE = Style.EMPTY.withColor(ChatFormatting.WHITE);
 
     public static void removeEssentiaLines(CompoundTag serverData) {
         CompoundTag details = serverData.getCompound(BlockDetailsDataProvider.DATA).orElse(null);
@@ -112,8 +113,6 @@ public final class EssentiaJadeFormat {
             default -> null;
         };
     }
-
-    private static final Style WHITE = Style.EMPTY.withColor(ChatFormatting.WHITE);
 
     private static Component essentia(Object aspectName) {
         Component name = aspectName instanceof Component component

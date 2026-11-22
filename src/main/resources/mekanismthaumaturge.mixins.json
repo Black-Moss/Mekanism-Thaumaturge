@@ -3,17 +3,17 @@
   "package": "com.blackmoss.mekanismthaumaturge.mixin",
   "compatibilityLevel": "JAVA_25",
   "mixins": [
-  "ChemicalTooltipMixin",
-  "LookingAtUtilsMixin",
+    "ChemicalTooltipMixin",
+    "LookingAtUtilsMixin",
     "TileComponentConfigMixin",
     "TransmissionTypeMixin",
     "TransmitterTypeMixin"
   ],
   "client": [
-  "client.GuiConfigTypeTabMixin",
-  "client.GuiGaugeAspectIconMixin",
-    "client.JadeTooltipRendererMixin",
-    "client.BlockDetailsComponentProviderMixin"
+    "client.BlockDetailsComponentProviderMixin",
+    "client.GuiConfigTypeTabMixin",
+    "client.GuiGaugeAspectIconMixin",
+    "client.JadeTooltipRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

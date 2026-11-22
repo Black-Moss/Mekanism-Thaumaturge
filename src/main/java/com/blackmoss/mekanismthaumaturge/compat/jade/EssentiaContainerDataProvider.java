@@ -20,24 +20,6 @@ public class EssentiaContainerDataProvider implements IServerDataProvider<BlockA
     public static final EssentiaContainerDataProvider INSTANCE = new EssentiaContainerDataProvider();
     public static final Identifier UID = MekanismThaumaturge.identifier("essentia_container");
 
-    @Override
-    public @NonNull Identifier getUid() {
-        return UID;
-    }
-
-    @Override
-    public void appendServerData(@NonNull CompoundTag data, BlockAccessor accessor) {
-        BlockEntity blockEntity = accessor.getBlockEntity();
-        if (blockEntity == null || blockEntity instanceof EssentiaTubeBlockEntity) {
-            return;
-        }
-        EssentiaTubeDataProvider.Display display = read(blockEntity);
-        if (display != null) {
-            data.put(EssentiaTubeDataProvider.KEY_DISPLAY,
-                    accessor.encodeAsNbt(EssentiaTubeDataProvider.Display.CODEC, display));
-        }
-    }
-
     private static EssentiaTubeDataProvider.@Nullable Display read(BlockEntity blockEntity) {
         Holder<IAspect> aspect = null;
         int amount = 0;
@@ -72,5 +54,23 @@ public class EssentiaContainerDataProvider implements IServerDataProvider<BlockA
                 .orElse("");
         return new EssentiaTubeDataProvider.Display(amount, amount, amount,
                 found.value().color(), typeName);
+    }
+
+    @Override
+    public @NonNull Identifier getUid() {
+        return UID;
+    }
+
+    @Override
+    public void appendServerData(@NonNull CompoundTag data, BlockAccessor accessor) {
+        BlockEntity blockEntity = accessor.getBlockEntity();
+        if (blockEntity == null || blockEntity instanceof EssentiaTubeBlockEntity) {
+            return;
+        }
+        EssentiaTubeDataProvider.Display display = read(blockEntity);
+        if (display != null) {
+            data.put(EssentiaTubeDataProvider.KEY_DISPLAY,
+                    accessor.encodeAsNbt(EssentiaTubeDataProvider.Display.CODEC, display));
+        }
     }
 }

@@ -27,28 +27,6 @@ import java.util.Optional;
 
 @Mixin(GuiGauge.class)
 public abstract class GuiGaugeAspectIconMixin {
-    @Inject(method = "updateTooltip", at = @At("TAIL"))
-    private void mekanismthaumaturge$attachAspectIcon(int mouseX, int mouseY, CallbackInfo ci) {
-        GuiTankGauge<?, ?> gauge = mekanismthaumaturge$asTankGauge(this);
-        if (PendingAspects.shouldHideAspects() || gauge == null) {
-            return;
-        }
-        AspectList aspects = mekanismthaumaturge$readAspects(gauge);
-        if (aspects.isEmpty()) {
-            return;
-        }
-        List<Component> lines = gauge.getTooltipText();
-        MutableComponent message = MutableComponent.create(new LiteralContents(""));
-        for (Component line : lines) {
-            if (!message.getSiblings().isEmpty()) {
-                message.append(MutableComponent.create(new LiteralContents("\n")));
-            }
-            message.append(line);
-        }
-        Tooltip tooltip = Tooltip.create(message, Optional.of(new AspectChipsTooltip(aspects)), null);
-        mekanismthaumaturge$installTooltip(this, tooltip);
-    }
-
     @Unique
     private static GuiTankGauge<?, ?> mekanismthaumaturge$asTankGauge(Object self) {
         return self instanceof GuiTankGauge<?, ?> gauge ? gauge : null;
@@ -82,5 +60,27 @@ public abstract class GuiGaugeAspectIconMixin {
             return ratio == null ? AspectList.EMPTY : ratio.resolve(intAmount);
         }
         return AspectList.EMPTY;
+    }
+
+    @Inject(method = "updateTooltip", at = @At("TAIL"))
+    private void mekanismthaumaturge$attachAspectIcon(int mouseX, int mouseY, CallbackInfo ci) {
+        GuiTankGauge<?, ?> gauge = mekanismthaumaturge$asTankGauge(this);
+        if (PendingAspects.shouldHideAspects() || gauge == null) {
+            return;
+        }
+        AspectList aspects = mekanismthaumaturge$readAspects(gauge);
+        if (aspects.isEmpty()) {
+            return;
+        }
+        List<Component> lines = gauge.getTooltipText();
+        MutableComponent message = MutableComponent.create(new LiteralContents(""));
+        for (Component line : lines) {
+            if (!message.getSiblings().isEmpty()) {
+                message.append(MutableComponent.create(new LiteralContents("\n")));
+            }
+            message.append(line);
+        }
+        Tooltip tooltip = Tooltip.create(message, Optional.of(new AspectChipsTooltip(aspects)), null);
+        mekanismthaumaturge$installTooltip(this, tooltip);
     }
 }
