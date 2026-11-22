@@ -29,7 +29,7 @@ import org.jspecify.annotations.Nullable;
 import java.util.Collection;
 import java.util.UUID;
 
-public class EssentiaTube extends BufferedTransmitter<IEssentiaTransport, EssentiaNetwork, EssentiaBuffer, EssentiaTube> {
+public class EssentiaPipe extends BufferedTransmitter<IEssentiaTransport, EssentiaNetwork, EssentiaBuffer, EssentiaPipe> {
     private static final String ESSENTIA_TYPE_KEY = "EssentiaType";
     private static final String ESSENTIA_AMOUNT_KEY = "EssentiaAmount";
     private static final String ESSENTIA_SCALE_KEY = "EssentiaScale";
@@ -46,7 +46,7 @@ public class EssentiaTube extends BufferedTransmitter<IEssentiaTransport, Essent
     private ResourceKey<IAspect> pendingTypeKey;
     private int pendingTypeAmount;
 
-    public EssentiaTube(@NonNull Holder<Block> blockProvider, @NonNull TileEntityTransmitter tile) {
+    public EssentiaPipe(@NonNull Holder<Block> blockProvider, @NonNull TileEntityTransmitter tile) {
         super(tile, MTTransmission.ESSENTIA);
         this.tier = Attribute.getTierNN(blockProvider, TubeTier.class);
     }

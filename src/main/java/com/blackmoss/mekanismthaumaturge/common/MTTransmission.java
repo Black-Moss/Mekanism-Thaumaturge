@@ -5,7 +5,7 @@ import mekanism.common.lib.transmitter.TransmissionType;
 
 public final class MTTransmission {
     public static final TransmissionType ESSENTIA = resolve(TransmissionType.class, "MEKANISM_THAUMATURGE_ESSENTIA");
-    public static final TransmitterType ESSENTIA_TUBE = resolve(TransmitterType.class, "MEKANISM_THAUMATURGE_ESSENTIA_TUBE");
+    public static final TransmitterType ESSENTIA_PIPE = resolve(TransmitterType.class, "MEKANISM_THAUMATURGE_ESSENTIA_PIPE");
 
     private static <E extends Enum<E>> E resolve(Class<E> enumClass, String name) {
         try {

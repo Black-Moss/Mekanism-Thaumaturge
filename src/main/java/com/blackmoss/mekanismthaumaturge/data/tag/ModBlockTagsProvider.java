@@ -21,16 +21,16 @@ public final class ModBlockTagsProvider extends BlockTagsProvider {
     @Override
     protected void addTags(HolderLookup.@NonNull Provider provider) {
         tag(MekanismTags.Blocks.CARDBOARD_BLACKLIST)
-                .add(MTBlocks.BASIC_ESSENTIA_TUBE.get())
-                .add(MTBlocks.ADVANCED_ESSENTIA_TUBE.get())
-                .add(MTBlocks.ELITE_ESSENTIA_TUBE.get())
-                .add(MTBlocks.ULTIMATE_ESSENTIA_TUBE.get());
+                .add(MTBlocks.BASIC_ESSENTIA_PIPE.get())
+                .add(MTBlocks.ADVANCED_ESSENTIA_PIPE.get())
+                .add(MTBlocks.ELITE_ESSENTIA_PIPE.get())
+                .add(MTBlocks.ULTIMATE_ESSENTIA_PIPE.get());
 
         tag(Tags.Blocks.RELOCATION_NOT_SUPPORTED)
-                .add(MTBlocks.BASIC_ESSENTIA_TUBE.get())
-                .add(MTBlocks.ADVANCED_ESSENTIA_TUBE.get())
-                .add(MTBlocks.ELITE_ESSENTIA_TUBE.get())
-                .add(MTBlocks.ULTIMATE_ESSENTIA_TUBE.get());
+                .add(MTBlocks.BASIC_ESSENTIA_PIPE.get())
+                .add(MTBlocks.ADVANCED_ESSENTIA_PIPE.get())
+                .add(MTBlocks.ELITE_ESSENTIA_PIPE.get())
+                .add(MTBlocks.ULTIMATE_ESSENTIA_PIPE.get());
     }
 
     @Override

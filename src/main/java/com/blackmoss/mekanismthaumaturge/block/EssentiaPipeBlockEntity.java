@@ -20,23 +20,23 @@ import net.minecraft.world.level.storage.ValueOutput;
 import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
-public class EssentiaTubeBlockEntity extends TileEntityTransmitter implements IEssentiaTransport {
+public class EssentiaPipeBlockEntity extends TileEntityTransmitter implements IEssentiaTransport {
     @Nullable
     private Holder<IAspect> suctionType;
     private int suctionAmount;
 
-    public EssentiaTubeBlockEntity(Holder<Block> blockProvider, BlockPos pos, BlockState state) {
+    public EssentiaPipeBlockEntity(Holder<Block> blockProvider, BlockPos pos, BlockState state) {
         super(blockProvider, pos, state);
     }
 
     @Override
-    protected @NonNull EssentiaTube createTransmitter(@NonNull Holder<Block> blockProvider) {
-        return new EssentiaTube(blockProvider, this);
+    protected @NonNull EssentiaPipe createTransmitter(@NonNull Holder<Block> blockProvider) {
+        return new EssentiaPipe(blockProvider, this);
     }
 
     @Override
-    public @NonNull EssentiaTube getTransmitter() {
-        return (EssentiaTube) super.getTransmitter();
+    public @NonNull EssentiaPipe getTransmitter() {
+        return (EssentiaPipe) super.getTransmitter();
     }
 
     @Override
@@ -59,16 +59,16 @@ public class EssentiaTubeBlockEntity extends TileEntityTransmitter implements IE
 
     @Override
     public @NonNull TransmitterType getTransmitterType() {
-        return MTTransmission.ESSENTIA_TUBE;
+        return MTTransmission.ESSENTIA_PIPE;
     }
 
     @Override
     protected @NonNull BlockState upgradeResult(@NonNull BlockState current, BaseTier tier) {
         return BlockStateHelper.copyStateData(current, switch (tier) {
-            case BASIC -> MTBlocks.BASIC_ESSENTIA_TUBE;
-            case ADVANCED -> MTBlocks.ADVANCED_ESSENTIA_TUBE;
-            case ELITE -> MTBlocks.ELITE_ESSENTIA_TUBE;
-            case ULTIMATE -> MTBlocks.ULTIMATE_ESSENTIA_TUBE;
+            case BASIC -> MTBlocks.BASIC_ESSENTIA_PIPE;
+            case ADVANCED -> MTBlocks.ADVANCED_ESSENTIA_PIPE;
+            case ELITE -> MTBlocks.ELITE_ESSENTIA_PIPE;
+            case ULTIMATE -> MTBlocks.ULTIMATE_ESSENTIA_PIPE;
             default -> null;
         });
     }
@@ -130,8 +130,8 @@ public class EssentiaTubeBlockEntity extends TileEntityTransmitter implements IE
         if (side == null) {
             return false;
         }
-        EssentiaTube tube = getTransmitter();
-        return tube.isConnectionType(side, ConnectionType.NORMAL) || tube.isConnectionType(side, ConnectionType.PUSH);
+        EssentiaPipe pipe = getTransmitter();
+        return pipe.isConnectionType(side, ConnectionType.NORMAL) || pipe.isConnectionType(side, ConnectionType.PUSH);
     }
 
     @Override
@@ -139,8 +139,8 @@ public class EssentiaTubeBlockEntity extends TileEntityTransmitter implements IE
         if (side == null) {
             return false;
         }
-        EssentiaTube tube = getTransmitter();
-        return tube.isConnectionType(side, ConnectionType.NORMAL) || tube.isConnectionType(side, ConnectionType.PULL);
+        EssentiaPipe pipe = getTransmitter();
+        return pipe.isConnectionType(side, ConnectionType.NORMAL) || pipe.isConnectionType(side, ConnectionType.PULL);
     }
 
     @Override
@@ -153,11 +153,11 @@ public class EssentiaTubeBlockEntity extends TileEntityTransmitter implements IE
         if (type == null || side == null) {
             return 0;
         }
-        EssentiaTube tube = getTransmitter();
-        Holder<IAspect> held = tube.getStoredType();
+        EssentiaPipe pipe = getTransmitter();
+        Holder<IAspect> held = pipe.getStoredType();
         if (held != null && !held.equals(type)) {
             return 0;
         }
-        return Math.max(0, tube.getStoredCapacity() - tube.getStored());
+        return Math.max(0, pipe.getStoredCapacity() - pipe.getStored());
     }
 }

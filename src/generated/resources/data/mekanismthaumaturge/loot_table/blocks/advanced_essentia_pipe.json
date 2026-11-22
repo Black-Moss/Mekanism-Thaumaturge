@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "mekanismthaumaturge:basic_essentia_tube"
+          "name": "mekanismthaumaturge:advanced_essentia_pipe"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "mekanismthaumaturge:blocks/basic_essentia_tube"
+  "random_sequence": "mekanismthaumaturge:blocks/advanced_essentia_pipe"
 }

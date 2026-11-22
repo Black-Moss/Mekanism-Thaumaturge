@@ -1,6 +1,6 @@
 package com.blackmoss.mekanismthaumaturge.compat.jade;
 
-import com.blackmoss.mekanismthaumaturge.block.EssentiaTubeBlockEntity;
+import com.blackmoss.mekanismthaumaturge.block.EssentiaPipeBlockEntity;
 import net.minecraft.world.level.block.Block;
 import org.jspecify.annotations.NonNull;
 import snownee.jade.api.IWailaClientRegistration;
@@ -12,7 +12,7 @@ import snownee.jade.api.WailaPlugin;
 public class MekanismThaumaturgeJadePlugin implements IWailaPlugin {
     @Override
     public void register(IWailaCommonRegistration registration) {
-        registration.registerBlockDataProvider(EssentiaTubeDataProvider.INSTANCE, EssentiaTubeBlockEntity.class);
+        registration.registerBlockDataProvider(EssentiaPipeDataProvider.INSTANCE, EssentiaPipeBlockEntity.class);
         registration.registerBlockDataProvider(EssentiaContainerDataProvider.INSTANCE, Block.class);
     }
 

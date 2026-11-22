@@ -36,15 +36,15 @@ public final class ModRecipeProvider extends LazyCatRecipeProvider {
 
     @Override
     protected void addRecipes() {
-        new ArcaneShapedBuilder(context, MTBlocks.BASIC_ESSENTIA_TUBE.asItem(), 5)
+        new ArcaneShapedBuilder(context, MTBlocks.BASIC_ESSENTIA_PIPE.asItem(), 5)
                 .pattern("SMS")
                 .define('S', MTItemTags.INGOTS_THAUMSTEEL)
                 .define('M', TTItems.SALIS_MUNDUS)
                 .count(8)
                 .save();
-        tube(MTBlocks.ADVANCED_ESSENTIA_TUBE.asItem(), MTBlocks.BASIC_ESSENTIA_TUBE.asItem(), MekanismTags.Items.ALLOYS_INFUSED);
-        tube(MTBlocks.ELITE_ESSENTIA_TUBE.asItem(), MTBlocks.ADVANCED_ESSENTIA_TUBE.asItem(), MekanismTags.Items.ALLOYS_REINFORCED);
-        tube(MTBlocks.ULTIMATE_ESSENTIA_TUBE.asItem(), MTBlocks.ELITE_ESSENTIA_TUBE.asItem(), MekanismTags.Items.ALLOYS_ATOMIC);
+        tube(MTBlocks.ADVANCED_ESSENTIA_PIPE.asItem(), MTBlocks.BASIC_ESSENTIA_PIPE.asItem(), MekanismTags.Items.ALLOYS_INFUSED);
+        tube(MTBlocks.ELITE_ESSENTIA_PIPE.asItem(), MTBlocks.ADVANCED_ESSENTIA_PIPE.asItem(), MekanismTags.Items.ALLOYS_REINFORCED);
+        tube(MTBlocks.ULTIMATE_ESSENTIA_PIPE.asItem(), MTBlocks.ELITE_ESSENTIA_PIPE.asItem(), MekanismTags.Items.ALLOYS_ATOMIC);
 
         new ItemStackChemicalToItemStackBuilder(context,
                 MTItems.THAUMSTEEL, ItemStackChemicalToItemStackType.METALLURGIC_INFUSING)

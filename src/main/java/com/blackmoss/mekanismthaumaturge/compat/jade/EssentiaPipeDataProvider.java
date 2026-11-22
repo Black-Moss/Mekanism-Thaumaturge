@@ -1,8 +1,8 @@
 package com.blackmoss.mekanismthaumaturge.compat.jade;
 
 import com.blackmoss.mekanismthaumaturge.MekanismThaumaturge;
-import com.blackmoss.mekanismthaumaturge.block.EssentiaTube;
-import com.blackmoss.mekanismthaumaturge.block.EssentiaTubeBlockEntity;
+import com.blackmoss.mekanismthaumaturge.block.EssentiaPipe;
+import com.blackmoss.mekanismthaumaturge.block.EssentiaPipeBlockEntity;
 import com.leclowndu93150.thaumaturge.api.aspect.IAspect;
 import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
@@ -15,8 +15,8 @@ import org.jspecify.annotations.NonNull;
 import snownee.jade.api.BlockAccessor;
 import snownee.jade.api.IServerDataProvider;
 
-public class EssentiaTubeDataProvider implements IServerDataProvider<BlockAccessor> {
-    public static final EssentiaTubeDataProvider INSTANCE = new EssentiaTubeDataProvider();
+public class EssentiaPipeDataProvider implements IServerDataProvider<BlockAccessor> {
+    public static final EssentiaPipeDataProvider INSTANCE = new EssentiaPipeDataProvider();
     public static final String KEY_DISPLAY = "EssentiaDisplay";
     static final String KEY_TYPE = "EssentiaType";
     static final String KEY_AMOUNT = "EssentiaAmount";
@@ -26,16 +26,16 @@ public class EssentiaTubeDataProvider implements IServerDataProvider<BlockAccess
 
     @Override
     public @NonNull Identifier getUid() {
-        return MekanismThaumaturge.identifier("essentia_tube");
+        return MekanismThaumaturge.identifier("essentia_pipe");
     }
 
     @Override
     public void appendServerData(@NonNull CompoundTag data, BlockAccessor accessor) {
         BlockEntity blockEntity = accessor.getBlockEntity();
-        if (!(blockEntity instanceof EssentiaTubeBlockEntity tube)) {
+        if (!(blockEntity instanceof EssentiaPipeBlockEntity pipe)) {
             return;
         }
-        EssentiaTube transmitter = tube.getTransmitter();
+        EssentiaPipe transmitter = pipe.getTransmitter();
         Holder<IAspect> type = transmitter.getStoredType();
         data.putString(KEY_TYPE, type == null ? "" : type.unwrapKey().map(key -> key.identifier().toString()).orElse(""));
         data.putInt(KEY_AMOUNT, transmitter.getStored());

@@ -2,8 +2,8 @@ package com.blackmoss.mekanismthaumaturge.client;
 
 import com.blackmoss.mekanismthaumaturge.MekanismThaumaturge;
 import com.blackmoss.mekanismthaumaturge.api.AspectRatio;
-import com.blackmoss.mekanismthaumaturge.client.render.EssentiaTubeRender;
-import com.blackmoss.mekanismthaumaturge.compat.jade.EssentiaTubeDataProvider;
+import com.blackmoss.mekanismthaumaturge.client.render.EssentiaPipeRender;
+import com.blackmoss.mekanismthaumaturge.compat.jade.EssentiaPipeDataProvider;
 import com.blackmoss.mekanismthaumaturge.registry.MTBlockEntities;
 import com.blackmoss.mekanismthaumaturge.registry.MTDataMaps;
 import com.leclowndu93150.thaumaturge.TTIds;
@@ -44,10 +44,10 @@ public class MekanismThaumaturgeClient {
 
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerBlockEntityRenderer(MTBlockEntities.BASIC_ESSENTIA_TUBE.get(), EssentiaTubeRender::new);
-        event.registerBlockEntityRenderer(MTBlockEntities.ADVANCED_ESSENTIA_TUBE.get(), EssentiaTubeRender::new);
-        event.registerBlockEntityRenderer(MTBlockEntities.ELITE_ESSENTIA_TUBE.get(), EssentiaTubeRender::new);
-        event.registerBlockEntityRenderer(MTBlockEntities.ULTIMATE_ESSENTIA_TUBE.get(), EssentiaTubeRender::new);
+        event.registerBlockEntityRenderer(MTBlockEntities.BASIC_ESSENTIA_PIPE.get(), EssentiaPipeRender::new);
+        event.registerBlockEntityRenderer(MTBlockEntities.ADVANCED_ESSENTIA_PIPE.get(), EssentiaPipeRender::new);
+        event.registerBlockEntityRenderer(MTBlockEntities.ELITE_ESSENTIA_PIPE.get(), EssentiaPipeRender::new);
+        event.registerBlockEntityRenderer(MTBlockEntities.ULTIMATE_ESSENTIA_PIPE.get(), EssentiaPipeRender::new);
     }
 
     @SubscribeEvent
@@ -101,13 +101,13 @@ public class MekanismThaumaturgeClient {
     public static class EssentiaElement extends Element {
         private static final int WIDTH = 100;
         private static final int HEIGHT = 13;
-        private final EssentiaTubeDataProvider.Display display;
+        private final EssentiaPipeDataProvider.Display display;
 
-        public EssentiaElement(EssentiaTubeDataProvider.Display display) {
+        public EssentiaElement(EssentiaPipeDataProvider.Display display) {
             this.display = display;
         }
 
-        public static Element create(EssentiaTubeDataProvider.Display display) {
+        public static Element create(EssentiaPipeDataProvider.Display display) {
             return new EssentiaElement(display).size(WIDTH, HEIGHT);
         }
 

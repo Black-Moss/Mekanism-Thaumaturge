@@ -3,7 +3,7 @@
   "crystals": [],
   "key": {
     "A": "#mekanism:alloys/reinforced",
-    "P": "mekanismthaumaturge:advanced_essentia_tube"
+    "P": "mekanismthaumaturge:advanced_essentia_pipe"
   },
   "pattern": [
     "PPP",
@@ -12,7 +12,7 @@
   ],
   "result": {
     "count": 8,
-    "id": "mekanismthaumaturge:elite_essentia_tube"
+    "id": "mekanismthaumaturge:elite_essentia_pipe"
   },
   "vis": 5
 }

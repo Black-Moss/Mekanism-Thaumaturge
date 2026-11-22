@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "mekanismthaumaturge:elite_essentia_tube"
+          "name": "mekanismthaumaturge:ultimate_essentia_pipe"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "mekanismthaumaturge:blocks/elite_essentia_tube"
+  "random_sequence": "mekanismthaumaturge:blocks/ultimate_essentia_pipe"
 }

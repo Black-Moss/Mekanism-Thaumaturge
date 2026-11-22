@@ -3,7 +3,7 @@
   "crystals": [],
   "key": {
     "A": "#mekanism:alloys/infused",
-    "P": "mekanismthaumaturge:basic_essentia_tube"
+    "P": "mekanismthaumaturge:basic_essentia_pipe"
   },
   "pattern": [
     "PPP",
@@ -12,7 +12,7 @@
   ],
   "result": {
     "count": 8,
-    "id": "mekanismthaumaturge:advanced_essentia_tube"
+    "id": "mekanismthaumaturge:advanced_essentia_pipe"
   },
   "vis": 5
 }

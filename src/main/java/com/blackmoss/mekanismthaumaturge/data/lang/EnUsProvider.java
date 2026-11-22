@@ -20,10 +20,10 @@ public class EnUsProvider extends LazyCatLanguageProvider {
         gui();
         configuration();
 
-        addBlock(MTBlocks.BASIC_ESSENTIA_TUBE, "Basic Essentia Tube");
-        addBlock(MTBlocks.ADVANCED_ESSENTIA_TUBE, "Advanced Essentia Tube");
-        addBlock(MTBlocks.ELITE_ESSENTIA_TUBE, "Elite Essentia Tube");
-        addBlock(MTBlocks.ULTIMATE_ESSENTIA_TUBE, "Ultimate Essentia Tube");
+        addBlock(MTBlocks.BASIC_ESSENTIA_PIPE, "Basic Essentia Pipe");
+        addBlock(MTBlocks.ADVANCED_ESSENTIA_PIPE, "Advanced Essentia Pipe");
+        addBlock(MTBlocks.ELITE_ESSENTIA_PIPE, "Elite Essentia Pipe");
+        addBlock(MTBlocks.ULTIMATE_ESSENTIA_PIPE, "Ultimate Essentia Pipe");
 
         addItem(MTItems.THAUMSTEEL, "Thaumsteel");
 
@@ -32,7 +32,7 @@ public class EnUsProvider extends LazyCatLanguageProvider {
                 "Electric, Energy, Electricity",
                 "Electricity thing");
 
-        add("description.mekanismthaumaturge.essentia_tube", "A simple way of distributing essentia throughout a transmitter network.");
+        add("description.mekanismthaumaturge.essentia_pipe", "A simple way of distributing essentia throughout a transmitter network.");
         add("transmission.mekanismthaumaturge.essentia", "Essentia");
         add("transmitter.mekanismthaumaturge.essentia", "- Essentia (%1$s)");
         add("capacity.mekanismthaumaturge.essentia", "Capacity: %1$s");
@@ -43,7 +43,7 @@ public class EnUsProvider extends LazyCatLanguageProvider {
     }
 
     private void jade() {
-        add("config.jade.plugin_mekanismthaumaturge.essentia_tube", "Essentia Tube");
+        add("config.jade.plugin_mekanismthaumaturge.essentia_pipe", "Essentia Pipe");
     }
 
     private void gui() {

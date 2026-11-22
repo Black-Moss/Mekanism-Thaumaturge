@@ -10,7 +10,7 @@ public enum MekanismThaumaturgeLang implements ILangEntry {
     TRANSMITTER_ESSENTIA("transmitter", "essentia"),
     TRANSMITTER_CAPACITY("capacity", "essentia"),
     TRANSMITTER_TRANSFER_RATE("transfer_rate", "essentia"),
-    DESCRIPTION_ESSENTIA_TUBE("description", "essentia_tube");
+    DESCRIPTION_ESSENTIA_PIPE("description", "essentia_pipe");
 
     private final String key;
 

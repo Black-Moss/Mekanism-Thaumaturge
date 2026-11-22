@@ -73,11 +73,11 @@
     "mekanismthaumaturge:mundus": {
       "aspects": [
         {
-          "amount": 10,
+          "amount": 5,
           "aspect": "thaumaturge:praecantatio"
         },
         {
-          "amount": 10,
+          "amount": 5,
           "aspect": "thaumaturge:potentia"
         }
       ],

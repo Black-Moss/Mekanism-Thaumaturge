@@ -1,7 +1,7 @@
 package com.blackmoss.mekanismthaumaturge.registry;
 
 import com.blackmoss.mekanismthaumaturge.MekanismThaumaturge;
-import com.blackmoss.mekanismthaumaturge.block.EssentiaTubeBlockEntity;
+import com.blackmoss.mekanismthaumaturge.block.EssentiaPipeBlockEntity;
 import com.leclowndu93150.thaumaturge.api.essentia.EssentiaCapabilities;
 import mekanism.common.capabilities.Capabilities;
 import mekanism.common.registration.impl.TileEntityTypeDeferredRegister;
@@ -13,17 +13,17 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 public final class MTBlockEntities {
     public static final TileEntityTypeDeferredRegister TILE_ENTITY_TYPES = new TileEntityTypeDeferredRegister(MekanismThaumaturge.MODID);
 
-    public static final TileEntityTypeRegistryObject<EssentiaTubeBlockEntity> BASIC_ESSENTIA_TUBE =
-            registerEssentiaTube(MTBlocks.BASIC_ESSENTIA_TUBE);
-    public static final TileEntityTypeRegistryObject<EssentiaTubeBlockEntity> ADVANCED_ESSENTIA_TUBE =
-            registerEssentiaTube(MTBlocks.ADVANCED_ESSENTIA_TUBE);
-    public static final TileEntityTypeRegistryObject<EssentiaTubeBlockEntity> ELITE_ESSENTIA_TUBE =
-            registerEssentiaTube(MTBlocks.ELITE_ESSENTIA_TUBE);
-    public static final TileEntityTypeRegistryObject<EssentiaTubeBlockEntity> ULTIMATE_ESSENTIA_TUBE =
-            registerEssentiaTube(MTBlocks.ULTIMATE_ESSENTIA_TUBE);
+    public static final TileEntityTypeRegistryObject<EssentiaPipeBlockEntity> BASIC_ESSENTIA_PIPE =
+            registerEssentiaPipe(MTBlocks.BASIC_ESSENTIA_PIPE);
+    public static final TileEntityTypeRegistryObject<EssentiaPipeBlockEntity> ADVANCED_ESSENTIA_PIPE =
+            registerEssentiaPipe(MTBlocks.ADVANCED_ESSENTIA_PIPE);
+    public static final TileEntityTypeRegistryObject<EssentiaPipeBlockEntity> ELITE_ESSENTIA_PIPE =
+            registerEssentiaPipe(MTBlocks.ELITE_ESSENTIA_PIPE);
+    public static final TileEntityTypeRegistryObject<EssentiaPipeBlockEntity> ULTIMATE_ESSENTIA_PIPE =
+            registerEssentiaPipe(MTBlocks.ULTIMATE_ESSENTIA_PIPE);
 
-    private static TileEntityTypeRegistryObject<EssentiaTubeBlockEntity> registerEssentiaTube(DeferredHolder<Block, ?> block) {
-        return TILE_ENTITY_TYPES.builder(block, (pos, state) -> new EssentiaTubeBlockEntity(block, pos, state))
+    private static TileEntityTypeRegistryObject<EssentiaPipeBlockEntity> registerEssentiaPipe(DeferredHolder<Block, ?> block) {
+        return TILE_ENTITY_TYPES.builder(block, (pos, state) -> new EssentiaPipeBlockEntity(block, pos, state))
                 .serverTicker(TileEntityTransmitter::tickServer)
                 .withSimple(EssentiaCapabilities.TRANSPORT)
                 .with(Capabilities.CONFIGURABLE, TileEntityTransmitter.CONFIGURABLE_PROVIDER)

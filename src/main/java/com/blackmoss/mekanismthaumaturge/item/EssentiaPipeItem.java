@@ -1,6 +1,6 @@
 package com.blackmoss.mekanismthaumaturge.item;
 
-import com.blackmoss.mekanismthaumaturge.block.EssentiaTubeBlockEntity;
+import com.blackmoss.mekanismthaumaturge.block.EssentiaPipeBlockEntity;
 import com.blackmoss.mekanismthaumaturge.common.MekanismThaumaturgeLang;
 import mekanism.api.text.EnumColor;
 import mekanism.common.MekanismLang;
@@ -19,10 +19,10 @@ import org.jspecify.annotations.NonNull;
 
 import java.util.function.Consumer;
 
-public class EssentiaTubeItem extends ItemBlockTooltip<BlockLargeTransmitter<EssentiaTubeBlockEntity>> {
+public class EssentiaPipeItem extends ItemBlockTooltip<BlockLargeTransmitter<EssentiaPipeBlockEntity>> {
     private final TubeTier tier;
 
-    public EssentiaTubeItem(BlockLargeTransmitter<EssentiaTubeBlockEntity> block, Item.Properties properties) {
+    public EssentiaPipeItem(BlockLargeTransmitter<EssentiaPipeBlockEntity> block, Item.Properties properties) {
         super(block, true, properties);
         this.tier = Attribute.getTierNN(block, TubeTier.class);
     }

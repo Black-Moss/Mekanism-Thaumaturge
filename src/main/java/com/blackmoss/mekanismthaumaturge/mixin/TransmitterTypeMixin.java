@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(TransmitterType.class)
 public enum TransmitterTypeMixin {
-    MEKANISM_THAUMATURGE_ESSENTIA_TUBE(TransmitterType.Size.LARGE);
+    MEKANISM_THAUMATURGE_ESSENTIA_PIPE(TransmitterType.Size.LARGE);
 
     @Shadow
     TransmitterTypeMixin(TransmitterType.Size size) {

@@ -1,7 +1,7 @@
 package com.blackmoss.mekanismthaumaturge.compat.jade;
 
 import com.blackmoss.mekanismthaumaturge.MekanismThaumaturge;
-import com.blackmoss.mekanismthaumaturge.block.EssentiaTubeBlockEntity;
+import com.blackmoss.mekanismthaumaturge.block.EssentiaPipeBlockEntity;
 import com.leclowndu93150.thaumaturge.api.aspect.AspectInstance;
 import com.leclowndu93150.thaumaturge.api.aspect.IAspect;
 import com.leclowndu93150.thaumaturge.api.aspect.IAspectContainer;
@@ -20,7 +20,7 @@ public class EssentiaContainerDataProvider implements IServerDataProvider<BlockA
     public static final EssentiaContainerDataProvider INSTANCE = new EssentiaContainerDataProvider();
     public static final Identifier UID = MekanismThaumaturge.identifier("essentia_container");
 
-    private static EssentiaTubeDataProvider.@Nullable Display read(BlockEntity blockEntity) {
+    private static EssentiaPipeDataProvider.@Nullable Display read(BlockEntity blockEntity) {
         Holder<IAspect> aspect = null;
         int amount = 0;
         if (blockEntity instanceof IEssentiaTransport transport) {
@@ -52,7 +52,7 @@ public class EssentiaContainerDataProvider implements IServerDataProvider<BlockA
         String typeName = found.unwrapKey()
                 .map(key -> key.identifier().getNamespace() + ":" + found.value().tag())
                 .orElse("");
-        return new EssentiaTubeDataProvider.Display(amount, amount, amount,
+        return new EssentiaPipeDataProvider.Display(amount, amount, amount,
                 found.value().color(), typeName);
     }
 
@@ -64,13 +64,13 @@ public class EssentiaContainerDataProvider implements IServerDataProvider<BlockA
     @Override
     public void appendServerData(@NonNull CompoundTag data, BlockAccessor accessor) {
         BlockEntity blockEntity = accessor.getBlockEntity();
-        if (blockEntity == null || blockEntity instanceof EssentiaTubeBlockEntity) {
+        if (blockEntity == null || blockEntity instanceof EssentiaPipeBlockEntity) {
             return;
         }
-        EssentiaTubeDataProvider.Display display = read(blockEntity);
+        EssentiaPipeDataProvider.Display display = read(blockEntity);
         if (display != null) {
-            data.put(EssentiaTubeDataProvider.KEY_DISPLAY,
-                    accessor.encodeAsNbt(EssentiaTubeDataProvider.Display.CODEC, display));
+            data.put(EssentiaPipeDataProvider.KEY_DISPLAY,
+                    accessor.encodeAsNbt(EssentiaPipeDataProvider.Display.CODEC, display));
         }
     }
 }

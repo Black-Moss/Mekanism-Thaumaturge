@@ -2,7 +2,7 @@
   "variants": {
     "": {
       "type": "mekanism:special/transmitter",
-      "model": "mekanismthaumaturge:block/transmitter/large/essentia_tube/basic"
+      "model": "mekanismthaumaturge:block/transmitter/large/essentia_pipe/advanced"
     }
   }
 }

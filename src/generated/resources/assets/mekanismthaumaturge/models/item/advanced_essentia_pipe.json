@@ -1,5 +1,5 @@
 {
-  "parent": "mekanismthaumaturge:block/transmitter/large/essentia_tube/basic",
+  "parent": "mekanismthaumaturge:block/transmitter/large/essentia_pipe/advanced",
   "visibility": {
     "downNONE": true,
     "downNORMAL": false,

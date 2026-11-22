@@ -1,7 +1,7 @@
 package com.blackmoss.mekanismthaumaturge.client.render;
 
-import com.blackmoss.mekanismthaumaturge.block.EssentiaTube;
-import com.blackmoss.mekanismthaumaturge.block.EssentiaTubeBlockEntity;
+import com.blackmoss.mekanismthaumaturge.block.EssentiaPipe;
+import com.blackmoss.mekanismthaumaturge.block.EssentiaPipeBlockEntity;
 import com.leclowndu93150.thaumaturge.TTIds;
 import com.leclowndu93150.thaumaturge.api.aspect.IAspect;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -35,13 +35,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-public class EssentiaTubeRender extends RenderTransmitterBase<EssentiaTubeBlockEntity, PipeRenderState> {
+public class EssentiaPipeRender extends RenderTransmitterBase<EssentiaPipeBlockEntity, PipeRenderState> {
     private static final int STAGES = 100;
     private static final float HEIGHT = 0.45F;
     private static final float OFFSET = 0.02F;
     private static final Identifier GLOW_TEXTURE = TTIds.rl("block/animatedglow");
 
-    public EssentiaTubeRender(BlockEntityRendererProvider.Context context) {
+    public EssentiaPipeRender(BlockEntityRendererProvider.Context context) {
         super(context);
     }
 
@@ -52,13 +52,13 @@ public class EssentiaTubeRender extends RenderTransmitterBase<EssentiaTubeBlockE
 
     @Override
     public void extractRenderState(
-            @NonNull EssentiaTubeBlockEntity tile,
+            @NonNull EssentiaPipeBlockEntity tile,
             @NonNull PipeRenderState state,
             float partialTick,
             @NonNull Vec3 cameraPosition,
             ModelFeatureRenderer.@Nullable CrumblingOverlay breakProgress) {
         super.extractRenderState(tile, state, partialTick, cameraPosition, breakProgress);
-        EssentiaTube transmitter = tile.getTransmitter();
+        EssentiaPipe transmitter = tile.getTransmitter();
         Holder<IAspect> type = transmitter.getStoredType();
         if (type == null) {
             return;
@@ -233,10 +233,10 @@ public class EssentiaTubeRender extends RenderTransmitterBase<EssentiaTubeBlockE
     }
 
     @Override
-    protected boolean shouldRenderTransmitter(@NonNull EssentiaTubeBlockEntity tile, @NonNull Vec3 camera) {
-        EssentiaTube tube = tile.getTransmitter();
+    protected boolean shouldRenderTransmitter(@NonNull EssentiaPipeBlockEntity tile, @NonNull Vec3 camera) {
+        EssentiaPipe pipe = tile.getTransmitter();
         return super.shouldRenderTransmitter(tile, camera)
-                && tube.getStoredType() != null
-                && tube.getStored() > 0;
+                && pipe.getStoredType() != null
+                && pipe.getStored() > 0;
     }
 }

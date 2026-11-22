@@ -1,7 +1,7 @@
 package com.blackmoss.mekanismthaumaturge.mixin.client;
 
 import com.blackmoss.mekanismthaumaturge.compat.jade.EssentiaJadeFormat;
-import com.blackmoss.mekanismthaumaturge.compat.jade.EssentiaTubeDataProvider;
+import com.blackmoss.mekanismthaumaturge.compat.jade.EssentiaPipeDataProvider;
 import com.blackmoss.mekanismthaumaturge.config.MekanismThaumaturgeClientConfig;
 import com.leclowndu93150.thaumaturge.compat.jade.BlockDetailsComponentProvider;
 import net.minecraft.nbt.CompoundTag;
@@ -27,7 +27,7 @@ public class BlockDetailsComponentProviderMixin {
             return;
         }
         CompoundTag serverData = accessor.getServerData();
-        if (serverData.get(EssentiaTubeDataProvider.KEY_DISPLAY) != null) {
+        if (serverData.get(EssentiaPipeDataProvider.KEY_DISPLAY) != null) {
             EssentiaJadeFormat.removeEssentiaLines(serverData);
         } else {
             EssentiaJadeFormat.rewrite(serverData);

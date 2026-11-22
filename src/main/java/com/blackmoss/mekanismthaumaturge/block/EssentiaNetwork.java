@@ -17,7 +17,7 @@ import org.jspecify.annotations.Nullable;
 
 import java.util.*;
 
-public class EssentiaNetwork extends DynamicBufferedNetwork<IEssentiaTransport, EssentiaNetwork, EssentiaBuffer, EssentiaTube> {
+public class EssentiaNetwork extends DynamicBufferedNetwork<IEssentiaTransport, EssentiaNetwork, EssentiaBuffer, EssentiaPipe> {
     private final EssentiaContainer container;
     @Nullable
     private Holder<IAspect> lastSyncType;
@@ -35,8 +35,8 @@ public class EssentiaNetwork extends DynamicBufferedNetwork<IEssentiaTransport, 
 
     public int getRate() {
         int rate = 0;
-        for (EssentiaTube tube : getTransmitters()) {
-            rate = Math.max(rate, tube.getTransferRate());
+        for (EssentiaPipe pipe : getTransmitters()) {
+            rate = Math.max(rate, pipe.getTransferRate());
         }
         return rate > 0 ? rate : 1;
     }
@@ -75,7 +75,7 @@ public class EssentiaNetwork extends DynamicBufferedNetwork<IEssentiaTransport, 
     }
 
     @Override
-    public void absorbBuffer(@NonNull EssentiaTube transmitter, @NonNull TransactionContext transaction) {
+    public void absorbBuffer(@NonNull EssentiaPipe transmitter, @NonNull TransactionContext transaction) {
         EssentiaBuffer share = transmitter.releaseShare();
         if (share.isEmpty()) {
             return;
@@ -107,8 +107,8 @@ public class EssentiaNetwork extends DynamicBufferedNetwork<IEssentiaTransport, 
     }
 
     @Override
-    public @NonNull List<EssentiaTube> adoptTransmittersAndAcceptorsFrom(@NonNull EssentiaNetwork net) {
-        List<EssentiaTube> transmitters = super.adoptTransmittersAndAcceptorsFrom(net);
+    public @NonNull List<EssentiaPipe> adoptTransmittersAndAcceptorsFrom(@NonNull EssentiaNetwork net) {
+        List<EssentiaPipe> transmitters = super.adoptTransmittersAndAcceptorsFrom(net);
         Holder<IAspect> type = net.container.resource();
         int amount = net.container.amountAsInt();
         if (type != null && amount > 0) {
@@ -120,19 +120,19 @@ public class EssentiaNetwork extends DynamicBufferedNetwork<IEssentiaTransport, 
     }
 
     @Override
-    protected void updateSaveShares(@Nullable EssentiaTube triggerTransmitter, @NonNull TransactionContext transaction) {
+    protected void updateSaveShares(@Nullable EssentiaPipe triggerTransmitter, @NonNull TransactionContext transaction) {
         super.updateSaveShares(triggerTransmitter, transaction);
-        Collection<EssentiaTube> transmitters = getTransmitters();
-        for (EssentiaTube tube : transmitters) {
-            tube.clearSaveShare();
+        Collection<EssentiaPipe> transmitters = getTransmitters();
+        for (EssentiaPipe pipe : transmitters) {
+            pipe.clearSaveShare();
         }
         Holder<IAspect> type = container.resource();
         if (type == null || container.amountAsInt() <= 0 || transmitters.isEmpty()) {
             return;
         }
         int totalCapacity = 0;
-        for (EssentiaTube tube : transmitters) {
-            totalCapacity += tube.getSaveShareCapacity();
+        for (EssentiaPipe pipe : transmitters) {
+            totalCapacity += pipe.getSaveShareCapacity();
         }
         if (totalCapacity <= 0) {
             return;
@@ -140,11 +140,11 @@ public class EssentiaNetwork extends DynamicBufferedNetwork<IEssentiaTransport, 
         int undistributed = container.amountAsInt();
         int index = 0;
         int last = transmitters.size() - 1;
-        for (EssentiaTube tube : transmitters) {
+        for (EssentiaPipe pipe : transmitters) {
             if (undistributed <= 0) {
                 break;
             }
-            int capacity = tube.getSaveShareCapacity();
+            int capacity = pipe.getSaveShareCapacity();
             int share;
             if (index == last) {
                 share = Math.min(capacity, undistributed);
@@ -152,7 +152,7 @@ public class EssentiaNetwork extends DynamicBufferedNetwork<IEssentiaTransport, 
                 share = Math.min(capacity, (int) Math.round(undistributed * (capacity / (double) totalCapacity)));
             }
             if (share > 0) {
-                tube.setSaveShare(new EssentiaBuffer(type, share));
+                pipe.setSaveShare(new EssentiaBuffer(type, share));
                 undistributed -= share;
             }
             index++;
@@ -171,8 +171,8 @@ public class EssentiaNetwork extends DynamicBufferedNetwork<IEssentiaTransport, 
         if (container.amountAsInt() != lastSyncAmount || !Objects.equals(container.resource(), lastSyncType)) {
             lastSyncAmount = container.amountAsInt();
             lastSyncType = container.resource();
-            for (EssentiaTube tube : getTransmitters()) {
-                tube.requestsUpdate();
+            for (EssentiaPipe pipe : getTransmitters()) {
+                pipe.requestsUpdate();
             }
             PacketUtils.sendToAllTracking(this, new PacketEssentiaNetworkSync(this));
         }
@@ -186,14 +186,14 @@ public class EssentiaNetwork extends DynamicBufferedNetwork<IEssentiaTransport, 
         }
         List<IEssentiaTransport> targets = new ArrayList<>();
         List<Direction> facings = new ArrayList<>();
-        for (EssentiaTube tube : getTransmitters()) {
-            AcceptorCache<IEssentiaTransport> cache = tube.getAcceptorCache();
+        for (EssentiaPipe pipe : getTransmitters()) {
+            AcceptorCache<IEssentiaTransport> cache = pipe.getAcceptorCache();
             for (Direction side : Direction.values()) {
-                if (tube.isConnectionType(side, ConnectionType.PULL)) {
+                if (pipe.isConnectionType(side, ConnectionType.PULL)) {
                     continue;
                 }
                 IEssentiaTransport acceptor = cache.getConnectedAcceptor(side);
-                if (acceptor == null || acceptor instanceof EssentiaTubeBlockEntity) {
+                if (acceptor == null || acceptor instanceof EssentiaPipeBlockEntity) {
                     continue;
                 }
                 Direction facing = side.getOpposite();
@@ -245,10 +245,10 @@ public class EssentiaNetwork extends DynamicBufferedNetwork<IEssentiaTransport, 
     }
 
     public boolean hasOutputTarget(Holder<IAspect> type) {
-        for (EssentiaTube tube : getTransmitters()) {
-            AcceptorCache<IEssentiaTransport> cache = tube.getAcceptorCache();
+        for (EssentiaPipe pipe : getTransmitters()) {
+            AcceptorCache<IEssentiaTransport> cache = pipe.getAcceptorCache();
             for (Direction side : Direction.values()) {
-                if (tube.isConnectionType(side, ConnectionType.PULL)) {
+                if (pipe.isConnectionType(side, ConnectionType.PULL)) {
                     continue;
                 }
                 IEssentiaTransport acceptor = cache.getConnectedAcceptor(side);

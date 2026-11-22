@@ -1,8 +1,8 @@
 package com.blackmoss.mekanismthaumaturge.compat.jade;
 
 import com.blackmoss.mekanismthaumaturge.MekanismThaumaturge;
-import com.blackmoss.mekanismthaumaturge.block.EssentiaTube;
-import com.blackmoss.mekanismthaumaturge.block.EssentiaTubeBlockEntity;
+import com.blackmoss.mekanismthaumaturge.block.EssentiaPipe;
+import com.blackmoss.mekanismthaumaturge.block.EssentiaPipeBlockEntity;
 import com.leclowndu93150.thaumaturge.api.aspect.IAspect;
 import mekanism.common.util.text.TextUtils;
 import net.minecraft.ChatFormatting;
@@ -18,18 +18,18 @@ import snownee.jade.api.IBlockComponentProvider;
 import snownee.jade.api.ITooltip;
 import snownee.jade.api.config.IPluginConfig;
 
-public class EssentiaTubeClientProvider implements IBlockComponentProvider {
-    public static final EssentiaTubeClientProvider INSTANCE = new EssentiaTubeClientProvider();
+public class EssentiaPipeClientProvider implements IBlockComponentProvider {
+    public static final EssentiaPipeClientProvider INSTANCE = new EssentiaPipeClientProvider();
 
     @Override
     public @NonNull Identifier getUid() {
-        return MekanismThaumaturge.identifier("essentia_tube");
+        return MekanismThaumaturge.identifier("essentia_pipe");
     }
 
     @Override
     public void appendTooltip(@NonNull ITooltip tooltip, BlockAccessor accessor, @NonNull IPluginConfig config) {
         BlockEntity blockEntity = accessor.getBlockEntity();
-        if (!(blockEntity instanceof EssentiaTubeBlockEntity tube)) {
+        if (!(blockEntity instanceof EssentiaPipeBlockEntity pipe)) {
             return;
         }
         CompoundTag data = accessor.getServerData();
@@ -39,7 +39,7 @@ public class EssentiaTubeClientProvider implements IBlockComponentProvider {
         int local = data.getInt("EssentiaLocal").get();
         boolean inNetwork = data.getBoolean("EssentiaInNetwork").get();
         if (capacity <= 0) {
-            EssentiaTube transmitter = tube.getTransmitter();
+            EssentiaPipe transmitter = pipe.getTransmitter();
             capacity = transmitter.getStoredCapacity();
             amount = transmitter.getStored();
             local = transmitter.getShare().amount();

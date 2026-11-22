@@ -1,6 +1,6 @@
 package com.blackmoss.mekanismthaumaturge.mixin;
 
-import com.blackmoss.mekanismthaumaturge.block.EssentiaTubeBlockEntity;
+import com.blackmoss.mekanismthaumaturge.block.EssentiaPipeBlockEntity;
 import com.leclowndu93150.thaumaturge.api.aspect.IAspect;
 import mekanism.common.integration.lookingat.LookingAtHelper;
 import mekanism.common.integration.lookingat.LookingAtUtils;
@@ -28,10 +28,10 @@ public class LookingAtUtilsMixin {
             boolean displayTanks,
             boolean displayFluidTanks,
             CallbackInfo ci) {
-        if (!(tile instanceof EssentiaTubeBlockEntity tube)) {
+        if (!(tile instanceof EssentiaPipeBlockEntity pipe)) {
             return;
         }
-        Holder<IAspect> type = tube.getTransmitter().getStoredType();
+        Holder<IAspect> type = pipe.getTransmitter().getStoredType();
         if (type == null) {
             return;
         }

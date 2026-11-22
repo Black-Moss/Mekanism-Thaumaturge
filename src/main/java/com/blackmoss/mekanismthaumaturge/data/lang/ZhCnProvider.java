@@ -20,10 +20,10 @@ public class ZhCnProvider extends LazyCatLanguageProvider {
         gui();
         configuration();
 
-        addBlock(MTBlocks.BASIC_ESSENTIA_TUBE, "基础源质管道");
-        addBlock(MTBlocks.ADVANCED_ESSENTIA_TUBE, "高级源质管道");
-        addBlock(MTBlocks.ELITE_ESSENTIA_TUBE, "精英源质管道");
-        addBlock(MTBlocks.ULTIMATE_ESSENTIA_TUBE, "终极源质管道");
+        addBlock(MTBlocks.BASIC_ESSENTIA_PIPE, "基础源质管道");
+        addBlock(MTBlocks.ADVANCED_ESSENTIA_PIPE, "高级源质管道");
+        addBlock(MTBlocks.ELITE_ESSENTIA_PIPE, "精英源质管道");
+        addBlock(MTBlocks.ULTIMATE_ESSENTIA_PIPE, "终极源质管道");
 
         addItem(MTItems.THAUMSTEEL, "神秘钢");
 
@@ -32,7 +32,7 @@ public class ZhCnProvider extends LazyCatLanguageProvider {
                 "电动，电能，电力",
                 "有电的东西");
 
-        add("description.mekanismthaumaturge.essentia_tube", "一种利用传输网络来传输源质的简单办法。");
+        add("description.mekanismthaumaturge.essentia_pipe", "一种利用传输网络来传输源质的简单办法。");
         add("transmission.mekanismthaumaturge.essentia", "源质");
         add("transmitter.mekanismthaumaturge.essentia", "- 源质（%1$s）");
         add("capacity.mekanismthaumaturge.essentia", "容量：%1$s");
@@ -43,7 +43,7 @@ public class ZhCnProvider extends LazyCatLanguageProvider {
     }
 
     private void jade() {
-        add("config.jade.plugin_mekanismthaumaturge.essentia_tube", "源质管道");
+        add("config.jade.plugin_mekanismthaumaturge.essentia_pipe", "源质管道");
     }
 
     private void gui() {

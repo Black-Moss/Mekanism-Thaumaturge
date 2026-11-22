@@ -40,15 +40,15 @@ public final class ModModelProvider extends LazyCatModelProvider {
     @Override
     protected void addModels() {
         itemFlat(MTItems.THAUMSTEEL.get());
-        tubeBlock(MTBlocks.BASIC_ESSENTIA_TUBE, "basic");
-        tubeBlock(MTBlocks.ADVANCED_ESSENTIA_TUBE, "advanced");
-        tubeBlock(MTBlocks.ELITE_ESSENTIA_TUBE, "elite");
-        tubeBlock(MTBlocks.ULTIMATE_ESSENTIA_TUBE, "ultimate");
+        pipeBlock(MTBlocks.BASIC_ESSENTIA_PIPE, "basic");
+        pipeBlock(MTBlocks.ADVANCED_ESSENTIA_PIPE, "advanced");
+        pipeBlock(MTBlocks.ELITE_ESSENTIA_PIPE, "elite");
+        pipeBlock(MTBlocks.ULTIMATE_ESSENTIA_PIPE, "ultimate");
     }
 
-    private void tubeBlock(BlockRegistryObject<?, ?> registryObject, String tier) {
+    private void pipeBlock(BlockRegistryObject<?, ?> registryObject, String tier) {
         Block block = registryObject.value();
-        Identifier baseModelLocation = MekanismThaumaturge.identifier("block/transmitter/large/essentia_tube/" + tier);
+        Identifier baseModelLocation = MekanismThaumaturge.identifier("block/transmitter/large/essentia_pipe/" + tier);
         Variant baseModel = BlockModelGenerators.plainModel(baseModelLocation);
 
         MultiVariant multiVariant = MultiVariant.of(new CustomBlockStateModelBuilder.Simple(
