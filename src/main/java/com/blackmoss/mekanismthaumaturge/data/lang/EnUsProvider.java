@@ -32,8 +32,9 @@ public class EnUsProvider extends LazyCatLanguageProvider {
                 "Electric, Energy, Electricity",
                 "Electricity thing");
 
-        add("description.mekanismthaumaturge.essentia_tube", "Transports essentia between connected blocks.");
+        add("description.mekanismthaumaturge.essentia_tube", "A simple way of distributing essentia throughout a transmitter network.");
         add("transmission.mekanismthaumaturge.essentia", "Essentia");
+        add("transmitter.mekanismthaumaturge.essentia", "- Essentia (%1$s)");
         add("network.mekanismthaumaturge.essentia", "Essentia Network");
 
         add("chemical.mekanismthaumaturge.mundus", "Mundus");

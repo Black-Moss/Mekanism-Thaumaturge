@@ -116,7 +116,7 @@ public class MekanismThaumaturgeClient {
             int colon = type.indexOf(':');
             String namespace = colon < 0 ? "thaumaturge" : type.substring(0, colon);
             String path = colon < 0 ? type : type.substring(colon + 1);
-            return Component.translatable("aspect." + namespace + "." + path);
+            return Component.translatable("aspect.%s.%s".formatted(namespace, path));
         }
 
         @Override

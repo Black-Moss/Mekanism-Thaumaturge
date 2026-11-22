@@ -5,6 +5,10 @@
         {
           "amount": 5,
           "aspect": "thaumaturge:praecantatio"
+        },
+        {
+          "amount": 5,
+          "aspect": "thaumaturge:potentia"
         }
       ],
       "volume": 10

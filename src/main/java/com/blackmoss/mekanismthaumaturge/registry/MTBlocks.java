@@ -2,6 +2,7 @@ package com.blackmoss.mekanismthaumaturge.registry;
 
 import com.blackmoss.mekanismthaumaturge.MekanismThaumaturge;
 import com.blackmoss.mekanismthaumaturge.block.EssentiaTubeBlockEntity;
+import com.blackmoss.mekanismthaumaturge.item.EssentiaTubeItem;
 import mekanism.api.tier.ITier;
 import mekanism.common.block.attribute.AttributeTier;
 import mekanism.common.block.transmitter.BlockLargeTransmitter;
@@ -26,6 +27,6 @@ public final class MTBlocks {
             BlockTypeTile<EssentiaTubeBlockEntity> type) {
         ITier tier = type.getOrThrow(AttributeTier.class).tier();
         return BLOCKS.register(tier.getBaseTier().getLowerName() + "_essentia_tube",
-                properties -> new BlockLargeTransmitter<>(type, properties), BlockItem::new);
+                properties -> new BlockLargeTransmitter<>(type, properties), EssentiaTubeItem::new);
     }
 }
