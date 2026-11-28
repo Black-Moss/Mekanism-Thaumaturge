@@ -19,7 +19,7 @@ public final class ModItemTagsProvider extends ItemTagsProvider {
     }
 
     @Override
-    protected void addTags(HolderLookup.@NonNull Provider provider) {
+    protected void addTags(HolderLookup.@NonNull Provider registries) {
         tag(Tags.Items.INGOTS)
                 .add(MTItems.THAUMSTEEL.get());
         tag(MTItemTags.INGOTS_THAUMSTEEL)

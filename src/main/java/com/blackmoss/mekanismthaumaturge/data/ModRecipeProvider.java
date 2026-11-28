@@ -22,8 +22,8 @@ import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public final class ModRecipeProvider extends LazyCatRecipeProvider {
-    private ModRecipeProvider(HolderLookup.Provider provider, RecipeOutput output, String modid) {
-        super(provider, output, modid);
+    private ModRecipeProvider(HolderLookup.Provider registries, RecipeOutput output, String modid) {
+        super(registries, output, modid);
     }
 
     private static ResearchGate mtGate(String path) {
@@ -80,8 +80,8 @@ public final class ModRecipeProvider extends LazyCatRecipeProvider {
         }
 
         @Override
-        protected @NonNull RecipeProvider createRecipeProvider(HolderLookup.@NonNull Provider provider, @NonNull RecipeOutput output) {
-            return new ModRecipeProvider(provider, output, MekanismThaumaturge.MODID);
+        protected @NonNull RecipeProvider createRecipeProvider(HolderLookup.@NonNull Provider registries, @NonNull RecipeOutput output) {
+            return new ModRecipeProvider(registries, output, MekanismThaumaturge.MODID);
         }
 
         @Override

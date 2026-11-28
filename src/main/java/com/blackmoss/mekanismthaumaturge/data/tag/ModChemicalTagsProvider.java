@@ -16,7 +16,7 @@ public final class ModChemicalTagsProvider extends ChemicalTagsProvider {
     }
 
     @Override
-    protected void addTags(HolderLookup.@NonNull Provider provider) {
+    protected void addTags(HolderLookup.@NonNull Provider registries) {
         tag(MTChemicalTags.MUNDUS)
                 .add(MTChemicals.MUNDUS.get());
     }

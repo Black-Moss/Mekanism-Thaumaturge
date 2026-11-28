@@ -19,7 +19,7 @@ public final class ModBlockTagsProvider extends BlockTagsProvider {
     }
 
     @Override
-    protected void addTags(HolderLookup.@NonNull Provider provider) {
+    protected void addTags(HolderLookup.@NonNull Provider registries) {
         tag(MekanismTags.Blocks.CARDBOARD_BLACKLIST)
                 .add(MTBlocks.BASIC_ESSENTIA_PIPE.get())
                 .add(MTBlocks.ADVANCED_ESSENTIA_PIPE.get())
