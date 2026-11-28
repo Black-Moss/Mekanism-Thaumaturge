@@ -17,8 +17,8 @@ import net.minecraft.world.level.material.Fluids;
 import java.util.concurrent.CompletableFuture;
 
 public final class ModDataMapProvider extends LazyCatDataMapProvider {
-    public ModDataMapProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider) {
-        super(packOutput, lookupProvider, MekanismThaumaturge.MODID);
+    public ModDataMapProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> registries) {
+        super(packOutput, registries, MekanismThaumaturge.MODID);
     }
 
     @Override

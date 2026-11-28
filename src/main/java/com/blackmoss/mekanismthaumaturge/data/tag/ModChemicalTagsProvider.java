@@ -11,8 +11,8 @@ import org.jspecify.annotations.NonNull;
 import java.util.concurrent.CompletableFuture;
 
 public final class ModChemicalTagsProvider extends ChemicalTagsProvider {
-    public ModChemicalTagsProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider) {
-        super(packOutput, lookupProvider, MekanismThaumaturge.MODID);
+    public ModChemicalTagsProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> registries) {
+        super(packOutput, registries, MekanismThaumaturge.MODID);
     }
 
     @Override
